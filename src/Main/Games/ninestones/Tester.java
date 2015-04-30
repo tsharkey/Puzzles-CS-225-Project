@@ -1,4 +1,4 @@
-package ninestones;
+package Main.Games.ninestones;
 
 import Main.Games.ninestones.Interface;
 
