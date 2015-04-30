@@ -28,6 +28,8 @@ public class GameManager extends JFrame implements KeyListener{
 
     private GamePanel mainPanel;
     private GamePanel currentPanel;
+    private JOptionPane option;
+    private int currentGame;
 
     //ints for games to select what to play
     //TODO: EXTENDABILITY GOES HERE FOR NEXT GAMES THAT ARE MADE
@@ -41,6 +43,8 @@ public class GameManager extends JFrame implements KeyListener{
         this.addKeyListener(this);
         mainPanel = new MainMenu(this);
         currentPanel = mainPanel;
+        option = new JOptionPane();
+        currentGame = MENU;
 
         makeWindow();
     }
@@ -66,7 +70,17 @@ public class GameManager extends JFrame implements KeyListener{
                     @Override
                     public boolean dispatchKeyEvent(KeyEvent e) {
                         if(e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == 27){
-                            setGame(MENU);
+                            if(currentGame == MENU){
+                                int x = option.showConfirmDialog(null, "Would you like to quit?", "Exit", JOptionPane.YES_NO_OPTION);
+                                if(x == JOptionPane.YES_OPTION){
+                                    System.exit(0);
+                                }
+                            }else{
+                                int x = option.showConfirmDialog(null, "Would you like to quit?","Exit", JOptionPane.YES_NO_OPTION);
+                                if(x == JOptionPane.YES_OPTION){
+                                    setGame(MENU);
+                                }
+                            }
                         }
                         return false;
                     }
@@ -84,21 +98,25 @@ public class GameManager extends JFrame implements KeyListener{
         //sets to menu panel
         if(nextGame == MENU){
             currentPanel = mainPanel;
+            currentGame = MENU;
         }
 
         //TODO: change nulls to correct game classes
         //sets to a new miners game
         else if(nextGame == MINERS){
             currentPanel = new MinerMainPanel();
+            currentGame = MINERS;
 //            setGame(MINERS);
         }
         //sets to a new tigers game
         else if(nextGame == TIGERS){
             currentPanel = null;
+            currentGame = TIGERS;
         }
         //sets to a new nine stones game
         else if(nextGame == NINE_STONES){
             currentPanel = null;
+            currentGame = NINE_STONES;
         }
         //TODO: ADD NEW GAMES HERE!
 
