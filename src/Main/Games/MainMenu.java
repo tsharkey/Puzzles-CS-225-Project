@@ -124,11 +124,11 @@ public class MainMenu extends GamePanel{
             manager.setGame(2);
         }
         else if(e.getSource() == buttons.get(1)) {
-            System.out.println("To Nine Stones");
+            System.out.println("To Tigers and True Love");
 //            manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
-            System.out.println("To Tigers and True Love");
+            System.out.println("To Nine Stones");
 //            manager.setGame(4);
         }
 

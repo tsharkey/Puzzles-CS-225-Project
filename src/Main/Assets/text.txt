@@ -2,5 +2,5 @@ i.miner
 i.placeholder
 i.placeholder
 Miners and Minutes
-Nine Stone Puzzle
 Tigers and True Love
+Nine Stone Puzzle

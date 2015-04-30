@@ -6,6 +6,8 @@ import Main.Assets.Constants;
 import Main.Games.GamePanel;
 import Main.Games.MainMenu;
 import Main.Games.MinerPuzzle.MinerMainPanel;
+import Main.Games.ninestones.Interface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -115,7 +117,7 @@ public class GameManager extends JFrame implements KeyListener{
         }
         //sets to a new nine stones game
         else if(nextGame == NINE_STONES){
-            currentPanel = null;
+            currentPanel = new Interface();
             currentGame = NINE_STONES;
         }
         //TODO: ADD NEW GAMES HERE!
