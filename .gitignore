@@ -8,5 +8,33 @@
 *.war
 *.ear
 
+# Package Files #
+*.war
+*.ear
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+### IDE EXCLUSIVE FILES ###
+#intellij
+*.iml
+/out/
+.idea
+
+#netbean
+/build/
+/nbproject/
+*.xml
+*.mf
+*.DS_Store
+nblibraries.properties
+/nbproject/private/
+/.idea
+
+#drjava
+*.class
+/bin/
+
+#eclipse
+.classpath
+.project
