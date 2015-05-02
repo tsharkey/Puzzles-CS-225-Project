@@ -25,14 +25,14 @@ public class Interface extends GamePanel {
 	private Scale scale;
 	private JTextArea rockSelectInfo;
 	private JPanel rockSelect, buttonPanel;
-	private JButton btnWeigh, btnBuy, btClearScale;
-	
+	private JButton btnWeigh, btnBuy, btClear;
+	private GameLogic game;
 	//
 	private JLabel moneyTotal, weighStatus, gameInstruction;
 	private JLabel scaleLeftCount, scaleRightCount;
 	
 	
-	private GameLogic game;
+	
 	
 	public Interface() {
 		
@@ -122,43 +122,37 @@ public class Interface extends GamePanel {
 		btnBuy = new JButton("$9 PURCHASE");
 		btnBuy.addActionListener(new Interface.ButtonListener());
 		this.buttonPanel.add(btnBuy);
-		btClearScale = new JButton("CLEAR SCALE");
-		btClearScale.addActionListener(new Interface.ButtonListener());
-		this.buttonPanel.add(btClearScale);
+		btClear = new JButton("CLEAR SCALE");
+		btClear.addActionListener(new Interface.ButtonListener());
+		this.buttonPanel.add(btClear);
 		this.buttonPanel.setPreferredSize(new Dimension(125, 100));
 		this.buttonPanel.setBackground(Color.BLUE);
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	/**
-	 * Inner class that allows for print listening.
-	 */
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//
+			if(e.getSource().equals(btnWeigh)){
+				getGameInstance().weighRocks();
+			}else if(e.getSource().equals(btnBuy)){
+				getGameInstance().buyRock();
+			}else if(e.getSource().equals(btClear)){
+				getScaleInstance().clearScale();
+			}
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	@Override
+	public void keyPressed(KeyEvent e) {}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {}
+	
+	GameLogic getGameInstance() { return this.game; }
+	Scale getScaleInstance() { return this.scale; }
 }

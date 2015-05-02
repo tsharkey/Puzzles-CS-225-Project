@@ -29,6 +29,10 @@ public class Scale extends JPanel implements MouseListener {
 		}
 	}
 	
+	public void clearScale() {
+		//
+	}
+	
 	// setter
 	void setTipping(int tip) {
 		this.scaleTipping = tip;
