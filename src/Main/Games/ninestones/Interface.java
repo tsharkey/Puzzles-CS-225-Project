@@ -1,7 +1,9 @@
 package Main.Games.ninestones;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -26,9 +29,15 @@ public class Interface extends GamePanel {
 	//private BufferedImage scale;
 	private JPanel gamePanel;
 	private Scale scale;
-	private GameLogic game = new GameLogic();
+	private GameLogic game;
 	
 	public Interface() {
+		this.game = new GameLogic();
+		
+		this.setBackground(Color.BLUE);
+		
+		setLayout(new BorderLayout());
+		
 		this.gamePanel = new JPanel();
 		// randomizing order of rocks and gold
 		ArrayList<Point> order = new ArrayList<Point>();
@@ -37,7 +46,8 @@ public class Interface extends GamePanel {
 		}
 		Collections.shuffle(order);
 		
-		gamePanel.setSize(800, 600);
+	//	gamePanel.setSize(Main.Assets.Constants.SCREEN_WIDTH,
+	//			Main.Assets.Constants.SCREEN_HEIGHT);
 		
 		this.rocks = new ArrayList<Rock>();
 		for (int i = 0; i < 8; i++) {
@@ -50,9 +60,9 @@ public class Interface extends GamePanel {
 		gamePanel.add(gem);
 		
 		this.scale = new Scale();
-		scale.setPreferredSize(new Dimension(200, 200));
+		scale.setPreferredSize(new Dimension(800, 600));
 		//scale.setLocation(0, 0);
-		gamePanel.add(scale);
+		this.add(scale, BorderLayout.SOUTH);
 		
 		JLabel timerLabel = new JLabel("Time Remaining 300 seconds");
 		timerLabel.setLocation(0, 0);
@@ -64,6 +74,12 @@ public class Interface extends GamePanel {
 		gamePanel.setBackground(Color.BLUE);
 		gamePanel.setVisible(true);
 		
+		this.add(gamePanel, BorderLayout.NORTH);
+		
+		this.setSize(Main.Assets.Constants.SCREEN_WIDTH,
+				Main.Assets.Constants.SCREEN_HEIGHT);
+		
+		this.setVisible(true);
 	}
 	
 	public JPanel getGamePanel() {

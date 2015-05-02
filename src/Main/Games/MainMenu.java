@@ -128,8 +128,7 @@ public class MainMenu extends GamePanel{
 //            manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
-            System.out.println("To Nine Stones");
-//            manager.setGame(4);
+            manager.setGame(4);
         }
 
     }
