@@ -9,8 +9,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,12 +25,12 @@ import Main.Games.GamePanel;
 public class Interface extends GamePanel {
 	
 	private Scale scale;
-	private JTextArea rockSelectInfo;
+	private JTextArea rockSelectInfo, moneyTotal;
 	private JPanel rockSelect, buttonPanel;
 	private JButton btnWeigh, btnBuy, btClear;
 	private GameLogic game;
 	//
-	private JLabel moneyTotal, weighStatus, gameInstruction;
+	private JLabel weighStatus, gameInstruction;
 	private JLabel scaleLeftCount, scaleRightCount;
 	
 	
@@ -64,7 +66,16 @@ public class Interface extends GamePanel {
 	    c.gridy = 1;
 	    this.add(scale, c);
 	    
+	    c.fill = GridBagConstraints.HORIZONTAL;
+	    c.anchor = GridBagConstraints.NORTH;
+	    c.weightx = 0.0;
+	    c.gridwidth = 1;
+	    c.gridx = 0;
+	    c.gridy = 1;
+	    this.add(this.moneyTotal, c);
+	    
 	    c.fill = GridBagConstraints.NONE;
+	    c.anchor = GridBagConstraints.CENTER;
 	    c.weightx = 0.0;
 	    c.gridwidth = 1;
 	    c.gridx = 0;
@@ -112,6 +123,17 @@ public class Interface extends GamePanel {
 		// constructing scale
 		this.scale = new Scale();
 		scale.setPreferredSize(new Dimension(800, 600));
+		
+		// money instructions
+		this.moneyTotal = new JTextArea();
+		this.moneyTotal.setPreferredSize(new Dimension(25,50));
+		this.moneyTotal.setLineWrap(true);
+		this.moneyTotal.setWrapStyleWord(true);
+		this.moneyTotal.setEditable(false);
+		this.moneyTotal.setBackground(Color.BLUE);
+		this.moneyTotal.setText("MONEY LEFT: " + DecimalFormat.getCurrencyInstance().format(game.getMoney()));
+		this.moneyTotal.setFont(font);
+		this.moneyTotal.setForeground(Color.RED);
 		
 		// button panel
 		this.buttonPanel = new JPanel();
