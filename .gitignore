@@ -38,3 +38,4 @@ nblibraries.properties
 #eclipse
 .classpath
 .project
+/dist/
