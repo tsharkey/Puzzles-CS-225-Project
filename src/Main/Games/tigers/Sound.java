@@ -10,9 +10,17 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Sound class retrieves sound files from sound folder.
  * 
- * @Author Henrique
+ * @author Henrique
+ * 
+ * @version (2015-04-30)
  */
-public class Sound{
+public class Sound {
+  
+  /**
+   * Plays the given sound file.
+   * 
+   * @param  soundFile  the name of the sound file
+   */
    public void playSound(String soundFile) throws LineUnavailableException {
     
     try {

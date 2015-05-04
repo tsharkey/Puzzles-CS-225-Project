@@ -21,7 +21,9 @@ public class Jailer extends JPanel{
     private BufferedImage img1 = null;
     
 /**
- * The Jailer class... To do: Description here
+ * The Jailer class contains the information involving the jailer: it can draw itself,
+ * it has a place to put his opening speech and has a place to put the speech he says 
+ * relating to each trial.
  * 
  * @author (Henrique, Maria, Hannah) 
  * @version (2015-04-16)
@@ -76,7 +78,9 @@ public class Jailer extends JPanel{
     }
     
     /**
+     * Sets the start text of the jailer.
      * 
+     * @param  speech  the start speech text
      */
     public void setStartText(String speech) {
       startArea.append(speech);

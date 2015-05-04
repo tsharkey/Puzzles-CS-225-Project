@@ -12,17 +12,15 @@ import javax.sound.sampled.LineUnavailableException;
 
 /**
  * Door Class is part of the implementation of the Tiger Puzzle application
- * creates a label with a image call door, each object door will be able to draw it self
- * it will be display text related to that door. 
+ * creates a label with a image call door, each object door will be able to draw itself
+ * and each door will display text related to that door. The door will also have a label
+ * that marks the door as door #1 or door #2. 
  * 
  * @author (Maria, Henrique, Hannah) 
  * @version (2015-04-16)
  */
 public class Door extends JPanel
 {
-    // the statment for the user to read
-    //private String text;
-    
     // text area where the statements are printing 
     private JTextArea txtArea;
 
@@ -38,13 +36,10 @@ public class Door extends JPanel
     private ImageIcon loverImage;
     
     //label for each of the images
-    //private JLabel label;
-    //private JLabel label1;
     private JLabel label2;
 
     private JLabel doorLabel;
     private JButton d1;
-      //,d2;
     private Image img;
     private Sound sound;
     
@@ -57,10 +52,11 @@ public class Door extends JPanel
     
     
     /**
-     * Constructor for objects of class 
+     * Constructor for objects of class Door. 
      */
     public Door(Display d)
     {
+      // default information
       hasLover = false;
       doorClicked = false;
       
@@ -115,13 +111,15 @@ public class Door extends JPanel
     }
 
     /**
-     * Draws a different image when the door is open. It is done by making the door as buttons.
+     * Draws a different image when the door is opened. 
+     * It is done by making the door a button.
+     * Also play the corresponding sound.
      */
     private class doorButton implements ActionListener { 
        
       Sound sound = new Sound();
 
-     public void actionPerformed(ActionEvent evt) {
+      public void actionPerformed(ActionEvent evt) {
 
         if(hasLover) {
           loverImage = new ImageIcon ("./images/loverImage.gif");
@@ -163,10 +161,15 @@ public class Door extends JPanel
         repaint();
         }
         
+        // the door has been clicked
         doorClicked = true;
      }
-}
+    }
     
+    /**
+     * Display what is behind the door, but do not update the score. 
+     * Also play the corresponding sound.
+     */
     public void showBehindDoor() {
       Sound sound = new Sound();
       
@@ -200,6 +203,8 @@ public class Door extends JPanel
     
     /**
      * Sets the text underneath the door.
+     * 
+     * @param  doorText  the text to set beneath the door
      */
     public void setText(String doorText)
     {
@@ -209,6 +214,8 @@ public class Door extends JPanel
     
     /**
      * Sets whether or not the door has a lover or tiger behind it.
+     * 
+     * @param  b  whether or not the door has a lover behind it
      */
     public void setHasLover(boolean b) 
     {
@@ -216,25 +223,39 @@ public class Door extends JPanel
     }
     
     /**
+     * Sets the number of the door.
      * 
+     * @param  num  the number of the door
      */
     public void setDoorNum(String num) {
       doorLabel.setText("Door No. " + num);
     }
     
+    /**
+     * Returns whether or not the door has a lover behind it.
+     * 
+     * @return  true if lover behind door, otherwise false
+     */
     public boolean hasLover() {
-      System.out.print(hasLover);
       return hasLover;
     }
     
+    /**
+     * Returns whether or not the door has been clicked already.
+     * 
+     * @return  true if door clicked, otherwise false
+     */
     public boolean wasClicked() {
       return doorClicked; 
     }
     
-    public Door getDoor() {
+    /**
+     * 
+     */
+    /*public Door getDoor() {
       return this;
     }
     
     public void actionPerformed(ActionEvent evt) {
-    }
+    }*/
 }
