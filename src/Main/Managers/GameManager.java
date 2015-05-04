@@ -110,14 +110,13 @@ public class GameManager extends JFrame implements KeyListener{
         else if(nextGame == MINERS){
             currentPanel = new MinerMainPanel();
             currentGame = MINERS;
-//            setGame(MINERS);
         }
         //sets to a new tigers game
         else if(nextGame == TIGERS){
-            try {
+            try{
                 currentPanel = new Display();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
+            }catch(Exception ex){
+                ex.printStackTrace();
             }
             currentGame = TIGERS;
         }

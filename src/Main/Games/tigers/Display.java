@@ -36,8 +36,7 @@ import java.io.FileNotFoundException;
  * @version (2015-04-20)
  */
 
-public class Display extends GamePanel /*extends JPanel*/ {
-  
+public class Display extends GamePanel { // add extends GamePanel
   // keep track of trials
   private ArrayList<Trial> trials;
   private int currentIndex; 
@@ -69,7 +68,7 @@ public class Display extends GamePanel /*extends JPanel*/ {
     setComponents(); 
 
     // read file to create trials
-    readFile("./text/tigerText.txt");
+    readFile("./src/Main/Games/tigers/text/tigerText.txt");
     
     //plays sound effects
     sound = null;
@@ -98,8 +97,11 @@ public class Display extends GamePanel /*extends JPanel*/ {
      //access file
      try {
        scanner = new Scanner(file);
-     } catch (FileNotFoundException e) {
+
+
+     } catch (Exception e) {
        System.out.println("Text file not found.");
+         e.printStackTrace();
      }
      
      // read line by line
@@ -274,7 +276,7 @@ public class Display extends GamePanel /*extends JPanel*/ {
             super.paintComponent(g);
             img1 = img.getImage();
             g.drawImage(img1, 0,0, null); 
-           };
+           }
         };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
@@ -416,40 +418,39 @@ public class Display extends GamePanel /*extends JPanel*/ {
    * Main method for testing purposes.
    */
   public static void main(String[] args)  {
-    
+
    JFrame frame = new JFrame();
-   
-   Display display = null; 
-   
+
+   Display display = null;
+
    try {
      display = new Display();
    }
    catch (Exception e) {
      System.out.println("Display could not be created.");
    }
-   
-   frame.add(display); 
+
+   frame.add(display);
    frame.pack();
-   frame.setVisible(true); 
+   frame.setVisible(true);
  }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
 
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e){
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e){
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void keyReleased(KeyEvent e){
     }
 }

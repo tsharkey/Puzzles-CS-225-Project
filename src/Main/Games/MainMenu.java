@@ -83,6 +83,7 @@ public class MainMenu extends GamePanel{
 
     /**
      * Load the images and info for the imagepane from file
+     *
      */
     private void loadInfos() {
 
@@ -125,7 +126,6 @@ public class MainMenu extends GamePanel{
             manager.setGame(2);
         }
         else if(e.getSource() == buttons.get(1)) {
-//            System.out.println("To Tigers and True Love");
             manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
