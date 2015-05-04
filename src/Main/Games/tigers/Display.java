@@ -3,12 +3,11 @@ package Main.Games.tigers;
 import Main.Games.GamePanel;
 
 import javax.swing.*;
-import java.util.ArrayList; 
+import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -25,8 +24,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.awt.event.MouseAdapter; 
-import java.awt.event.MouseEvent;
 
 /**
  * The Display class... To do: description  
@@ -35,7 +32,7 @@ import java.awt.event.MouseEvent;
  * @version (2015-04-20)
  */
 
-public class Display extends JPanel { // add extends GamePanel
+public class Display extends GamePanel { // add extends GamePanel
   
   // keep track of trials
   private ArrayList<Trial> trials;
@@ -67,7 +64,7 @@ public class Display extends JPanel { // add extends GamePanel
     setComponents(); 
 
     // read file to create trials
-    readFile("./text/tigerText.txt");
+    readFile("./src/Main/Games/tigers/text/tigerText.txt");
     
     //plays sound effects
     sound = null;
@@ -95,8 +92,11 @@ public class Display extends JPanel { // add extends GamePanel
      //access file
      try {
        scanner = new Scanner(file);
-     } catch (FileNotFoundException e) {
+
+
+     } catch (Exception e) {
        System.out.println("Text file not found.");
+         e.printStackTrace();
      }
      // read line by line
      scanner.useDelimiter(System.getProperty("line.separator"));
@@ -259,7 +259,7 @@ public class Display extends JPanel { // add extends GamePanel
             super.paintComponent(g);
             img1 = img.getImage();
             g.drawImage(img1, 0,0, null); 
-           };
+           }
         };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
@@ -393,20 +393,40 @@ public class Display extends JPanel { // add extends GamePanel
    * Main method for testing purposes.
    */
   public static void main(String[] args)  {
-    
+
    JFrame frame = new JFrame();
-   
-   Display display = null; 
-   
+
+   Display display = null;
+
    try {
      display = new Display();
    }
    catch (Exception e) {
      System.out.println("Display could not be created.");
    }
-   
-   frame.add(display); 
+
+   frame.add(display);
    frame.pack();
-   frame.setVisible(true); 
+   frame.setVisible(true);
  }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e){
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e){
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e){
+
+    }
 }

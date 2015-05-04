@@ -124,8 +124,8 @@ public class MainMenu extends GamePanel{
             manager.setGame(2);
         }
         else if(e.getSource() == buttons.get(1)) {
-            System.out.println("To Tigers and True Love");
-//            manager.setGame(3);
+
+            manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
             manager.setGame(4);
