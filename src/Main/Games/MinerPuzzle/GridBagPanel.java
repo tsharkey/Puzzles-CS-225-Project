@@ -7,8 +7,7 @@ import javax.swing.JPanel;
  * This class is a Panel that extends the JPanel Class, it organizes all the elements of the matrix
  * by GridBagLayout and It has a method addComponent() for adding elements at the panel
  * 
- * @author (Viet Dinh) 
- * @version 02.10.15
+ * @author Viet Dinh
  */
 public abstract class GridBagPanel extends JPanel
 {
@@ -20,7 +19,6 @@ public abstract class GridBagPanel extends JPanel
      */
     public GridBagPanel()
     {
-        //super();
         layout = new GridBagLayout();
         setLayout(layout);
         constraints = new GridBagConstraints();

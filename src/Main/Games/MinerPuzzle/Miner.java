@@ -1,15 +1,11 @@
 package Main.Games.MinerPuzzle;
 
-
 import java.awt.Color;
 
-/*
+/**
  * Creates the Miner class to create 4 miners in the Miners and Minutes puzzle,
  * Keeping track of each miner when walking from mine cave to safety and from safety to mine cave
- */
-
-/**
- *
+ * 
  * @author Parth Patel, Viet Dinh, Sean Johnston
  */
 public class Miner {
@@ -28,6 +24,14 @@ public class Miner {
     
     private Color color;
     
+    /**
+     * Constructor of Miner
+     * @param n
+     * @param t
+     * @param color
+     * @param x
+     * @param y 
+     */
     public Miner(String n, int t, Color color, int x, int y){
         
         name = n;
@@ -39,6 +43,9 @@ public class Miner {
         orig_X = x;
         orig_Y = y;
     }
+   
+    // getters/setters
+    
     public int getOX(){
         return orig_X;
     }

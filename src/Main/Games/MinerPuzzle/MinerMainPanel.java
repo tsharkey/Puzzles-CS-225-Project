@@ -1,52 +1,43 @@
 package Main.Games.MinerPuzzle;
 
-
 import Main.Games.GamePanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ *  Creates the Main Panel for the Miners, which sets the instruction/Game Info for the game
+ * 
  * @author Viet Dinh, Parth Patel
  */
+
 public class MinerMainPanel extends GamePanel {
 
+    //instance varaibles
     private JLabel gameTitle;
     private MinerGamePanel minerGamePanel;
     private JTextArea instruction;
-    //private JTextArea gameInfo;
     private GridBagLayout layout;
     private GridBagConstraints constraints;
-    
-    
 
-    public MinerMainPanel() {
-        
+    // Sets the constructor for the Miner Main Panel for the puzzle
+    public MinerMainPanel() 
+    {    
         Miner.LaternInSafeZone = false;
         Miner.orignalTime = 15;
         MinerGUI.number_ready_to_go = 0;
         MinerGUI.undoList.clear();
         MinerGUI.timeList.clear();
         
-
         layout = new GridBagLayout();
         setLayout(layout);
         constraints = new GridBagConstraints();
         this.setAlignmentY(TOP_ALIGNMENT);
         this.setAlignmentX(RIGHT_ALIGNMENT);
 
-        //String instructionString = "instructions";
-
         minerGamePanel = new MinerGamePanel();
         instruction = new JTextArea(30, 17);
-       
        
         instruction.setWrapStyleWord(true);
         instruction.setFont(new Font("Serif", Font.ITALIC, 12));
@@ -54,16 +45,13 @@ public class MinerMainPanel extends GamePanel {
         instruction.setEditable(false);
         addText();
         
-       
         gameTitle = new JLabel("Miner Puzzle");
         gameTitle.setForeground(Color.PINK);
         gameTitle.setFont(new Font("Serif", Font.BOLD, 40));
         
-
         addComponent(gameTitle, 0, 0, 1, 1);
         addComponent(instruction, 1, 0, 1, 2);
         addComponent(minerGamePanel, 0, 1, 1, 1);
-      
     }
 
     /**
@@ -85,15 +73,19 @@ public class MinerMainPanel extends GamePanel {
         add(component);
     }
     
+    /**
+     * Adds the Game Instructions/ Game Info text to the panel
+     */
     public void addText()
     {
         instruction.append("INSTRUCTIONS: \n \n");
+        instruction.append("Frist select the Miners, then"+ '\n');
         instruction.append("1) Click on MOVE button\n to move from cave to safety" + '\n');
         instruction.append("2) Click on UNDO button\n to move to the previous state" + '\n');
         instruction.append("3) Click on RESET button\n to allow to restart the puzzle" + '\n');
         instruction.append("4) Click on CLOSE button\n to exit the puzzle" + '\n'); 
         instruction.append("" + '\n');
-        instruction.append("" + '\n');
+       // instruction.append("" + '\n');
         instruction.append("GAME INFORMATION: \n \n");
         instruction.append("Welcome to the Miners\n and Minutes Puzzle! " + '\n');
         instruction.append("4 miners have been\n trapped in a cavern\n and collapse in 15 min." + '\n');

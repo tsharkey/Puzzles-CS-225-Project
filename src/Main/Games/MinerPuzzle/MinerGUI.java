@@ -1,8 +1,5 @@
 package Main.Games.MinerPuzzle;
 
-/*
- * Creates GUI for the Miners and Minute Puzzle 
- */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,11 +12,13 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- *
+ * Creates GUI for the Miners and Minutes Puzzle
+ * 
  * @author Parth Patel, Viet Dinh, Sean Johnston
  */
 public class MinerGUI extends JPanel implements MouseListener {
 
+    // instance variables
     private Miner[] miners;
     private Ellipse2D[] circles;
     private int time;
@@ -29,6 +28,9 @@ public class MinerGUI extends JPanel implements MouseListener {
     public static ArrayList<boolean[]> undoList = new ArrayList<boolean[]>();
     public static ArrayList<Integer> timeList = new ArrayList<Integer>();
 
+    /**
+     * Sets the Constructor for the Miner GUI
+     */
     public MinerGUI() {
 
         miners = new Miner[4];
@@ -42,6 +44,10 @@ public class MinerGUI extends JPanel implements MouseListener {
         this.addMouseListener(this);
     }
 
+    /**
+     * Override the paintComponet method to create the main puzzle and design
+     * @param g 
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -90,6 +96,10 @@ public class MinerGUI extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent e) {
     }
 
+    /**
+     * Override the mouseReleaded method
+     * @param e 
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         for (int i = 0; i < miners.length; i++) {
@@ -217,6 +227,10 @@ public class MinerGUI extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
+    /**
+     * Creates the update locations method when miners move from cave to safety,
+     * it updates the location in the puzzle
+     */
     public void update_locations() {
 
         MinerGamePanel.move.setEnabled(false);
@@ -331,6 +345,9 @@ public class MinerGUI extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * Reset method, to reset the game when the player wants to reset
+     */
     public void reset() {
         for (Miner miner : miners) {
             miner.setX(miner.getOX());
@@ -340,6 +357,9 @@ public class MinerGUI extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * Save State method, which saves the state of the game when the user plays
+     */
     public void saveState() {
         undoList.add(new boolean[5]);
         for (int i = 0; i < miners.length; i++) {
@@ -349,6 +369,9 @@ public class MinerGUI extends JPanel implements MouseListener {
         timeList.add(Miner.orignalTime);
     }
 
+    /**
+     * Sets the PreState of the Miner puzzle
+     */
     public void setPreState() {
         for (int i = 0; i < miners.length; i++) {
             miners[i].isSafe = undoList.get(undoList.size() - 1)[i];
