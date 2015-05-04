@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.net.URISyntaxException;
 /**
  * Sound class retrieves sound files from sound folder.
  * 
@@ -22,10 +23,15 @@ public class Sound {
    * @param  soundFile  the name of the sound file
    */
    public void playSound(String soundFile) throws LineUnavailableException {
+     
+     String path = "sounds/" + soundFile + ".wav";
     
+     /*getClass().getResource("images/prison.png")
+       AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
+                "./src/Main/Games/tigers/sounds/"+soundFile+".wav"));*/
+       
     try {
-        AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
-                "./src/Main/Games/tigers/sounds/"+soundFile+".wav"));
+        AudioInputStream audio = AudioSystem.getAudioInputStream(new File(getClass().getResource(path).toURI()));
         Clip clip = AudioSystem.getClip();
         clip.open(audio);
         clip.start();
@@ -37,6 +43,7 @@ public class Sound {
         System.out.println(ioe);
     } catch (LineUnavailableException lua) {
         System.out.println(lua);
+    } catch (URISyntaxException ese) {
     }
 
 }
