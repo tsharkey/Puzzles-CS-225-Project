@@ -245,11 +245,19 @@ public class Display extends GamePanel { // add extends GamePanel
           // increase score if both doors have tigers behind them
           if (trials.get(currentIndex).bothHaveTigers()) {
             resultsText.setText("Yes-- both doors have tigers!");
+            increaseScore(true);
+            chosenAnswer = true; 
+          } else {
+            resultsText.setText("No-- a lover is behind a door!");
+          }
+          
+          /*if (trials.get(currentIndex).bothHaveTigers()) {
+            resultsText.setText("Yes-- both doors have tigers!");
             numCorrect++; 
             scoreLabel.setText("Correct: " + numCorrect + "/" + trialNum);
           } else {
             resultsText.setText("No-- a lover is behind a door!");
-          }
+          }*/
         }
       });
     
