@@ -7,7 +7,9 @@ import Main.Games.GamePanel;
 import Main.Games.MainMenu;
 import Main.Games.MinerPuzzle.MinerMainPanel;
 import Main.Games.ninestones.Interface;
+import Main.Games.tigers.Display;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -112,7 +114,11 @@ public class GameManager extends JFrame implements KeyListener{
         }
         //sets to a new tigers game
         else if(nextGame == TIGERS){
-            currentPanel = null;
+            try {
+                currentPanel = new Display();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
             currentGame = TIGERS;
         }
         //sets to a new nine stones game

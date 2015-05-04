@@ -101,8 +101,8 @@ public class MainMenu extends GamePanel{
                         System.out.println("Image not found");
                     }
                 }
-                else {
-                    gameTexts.add(temp);
+                else if(temp.charAt(0)=='n'){
+                    gameTexts.add(temp.substring(2));
                 }
             }
         }
@@ -115,7 +115,8 @@ public class MainMenu extends GamePanel{
     /**
      * ActionListner for the buttons, changes states when images are clicked.
      * @param e
-     * TODO: EXPENDABLE: add more games' button listeners to switch to
+     * TODO: EXPENDABLE: add more games' button listeners to switch to,
+     * TODO: number input into setGame is button's index+2
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -124,8 +125,8 @@ public class MainMenu extends GamePanel{
             manager.setGame(2);
         }
         else if(e.getSource() == buttons.get(1)) {
-            System.out.println("To Tigers and True Love");
-//            manager.setGame(3);
+//            System.out.println("To Tigers and True Love");
+            manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
             manager.setGame(4);

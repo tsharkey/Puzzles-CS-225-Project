@@ -3,12 +3,11 @@ package Main.Games.tigers;
 import Main.Games.GamePanel;
 
 import javax.swing.*;
-import java.util.ArrayList; 
+import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -25,8 +24,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.awt.event.MouseAdapter; 
-import java.awt.event.MouseEvent;
 
 /**
  * The Display class, which extends the GamePanel class, is in charge of putting all the 
@@ -39,7 +36,7 @@ import java.awt.event.MouseEvent;
  * @version (2015-04-20)
  */
 
-public class Display /*extends GamePanel*/ extends JPanel {
+public class Display extends GamePanel /*extends JPanel*/ {
   
   // keep track of trials
   private ArrayList<Trial> trials;
@@ -435,4 +432,24 @@ public class Display /*extends GamePanel*/ extends JPanel {
    frame.pack();
    frame.setVisible(true); 
  }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }

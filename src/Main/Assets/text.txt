@@ -1,6 +1,7 @@
+//Images files begin
 i.miner
 i.placeholder
 i.placeholder
-Miners and Minutes
-Tigers and True Love
-Nine Stone Puzzle
+n.Miners and Minutes
+n.Tigers and True Love
+n.Nine Stone Puzzle
