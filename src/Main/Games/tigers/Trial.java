@@ -51,7 +51,7 @@ public class Trial extends JPanel
 
     // add items to center panel
    // JPanel centerPanel = new JPanel();
-    final ImageIcon img = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+    final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
    JPanel centerPanel = new JPanel(){
 
     protected void paintComponent(Graphics g) {
@@ -68,7 +68,7 @@ public class Trial extends JPanel
     
     // add center panel to trial panel
     add(centerPanel, BorderLayout.CENTER);
-       final ImageIcon img3 = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+       final ImageIcon img3 = new ImageIcon(getClass().getResource("images/prison.png"));
 
     JPanel topPanel = new JPanel(new BorderLayout()){ 
        

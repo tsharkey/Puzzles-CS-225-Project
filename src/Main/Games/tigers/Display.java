@@ -205,7 +205,7 @@ public class Display extends GamePanel { // add extends GamePanel
     createTitle();
     
     // create south panel
-    ImageIcon img = new ImageIcon("./images/prison.png");
+    ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
     southPanel = new JPanel();
     southPanel.setBackground(Color.black);
     southPanel.setLayout(new BorderLayout());
@@ -271,7 +271,7 @@ public class Display extends GamePanel { // add extends GamePanel
   private void createButtons() {
     // buttons in own panel in south
     
-    final ImageIcon img = new ImageIcon("./images/prison.png");
+    final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
     JPanel btnPanel = new JPanel(){
        
             protected void paintComponent(Graphics g) {
@@ -375,7 +375,7 @@ public class Display extends GamePanel { // add extends GamePanel
    */
   private void createTitle() {
     //JPanel northPanel = new JPanel();
-     final ImageIcon img4 = new ImageIcon("./images/prison.png");
+     final ImageIcon img4 = new ImageIcon(getClass().getResource("images/prison.png"));
     JPanel northPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {
