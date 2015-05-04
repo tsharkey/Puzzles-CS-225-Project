@@ -48,30 +48,31 @@ public class Trial extends JPanel
    * Add components to trial panel.
    */
   public void addComponents() {
-    
+
     // add items to center panel
    // JPanel centerPanel = new JPanel();
     final ImageIcon img = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
-   JPanel centerPanel = new JPanel(){ 
-       
-   protected void paintComponent(Graphics g) {
+   JPanel centerPanel = new JPanel(){
+
+    protected void paintComponent(Graphics g) {
            super.paintComponent(g);
            img1 = img.getImage();
            g.drawImage(img1, 0,0, null);
-          
        };
    };
     
+    // add items to center panel
     centerPanel.add(doorOne);
     centerPanel.add(doorTwo);
     centerPanel.add(jailer);
     
+    // add center panel to trial panel
     add(centerPanel, BorderLayout.CENTER);
-    
-    final ImageIcon img3 = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+       final ImageIcon img3 = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+
     JPanel topPanel = new JPanel(new BorderLayout()){ 
        
-   protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             img2 = img3.getImage();
             g.drawImage(img2, 0,0, null);
@@ -113,7 +114,10 @@ public class Trial extends JPanel
   }
   
   /**
+   * Set the text of the given door. 
    * 
+   * @param  text  the text for the door
+   * @param  doorNum  which door to give the text to
    */
   public void setDoorText(String text, int doorNum) {
     // set the text of the specified door
@@ -126,7 +130,10 @@ public class Trial extends JPanel
   }
   
   /**
+   * Set whether or not the given door has a lover behind it.
    * 
+   * @param  hasLover  true if lover should be behind door, otherwise false
+   * @param  doorNum  which door to pass information to
    */
   public void setDoorHasLover(boolean hasLover, int doorNum) {
      // set if the specified door has a lover or tiger behind it
@@ -139,7 +146,10 @@ public class Trial extends JPanel
   }
   
  /**
+   * Sets the number of the specified door.
    * 
+   * @param  num  the number for the door
+   * @param  doorNum  which door to set
    */
   public void setDoorNum(String num, int doorNum) {
     if (doorNum == 1) {
@@ -151,7 +161,7 @@ public class Trial extends JPanel
   }
   
   /**
-   * 
+   * Reveal what is behind each door in trial.
    */
   public void showBehindDoors() {
     doorOne.showBehindDoor();
@@ -159,14 +169,15 @@ public class Trial extends JPanel
   }
   
   /**
+   * Returns true if both doors have tigers behind them.
    * 
+   * @return  true if both doors have tigers, otherwise return false
    */
   public boolean bothHaveTigers() {
     if (doorOne.hasLover() || doorTwo.hasLover()) {
       return false; 
-    } else
-    {
-    return true; 
+    } else {
+      return true; 
     }
   }
 }

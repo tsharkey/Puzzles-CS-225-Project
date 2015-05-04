@@ -26,7 +26,11 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 /**
- * The Display class... To do: description  
+ * The Display class, which extends the GamePanel class, is in charge of putting all the 
+ * components of the tiger puzzle together. It combines a panel with the view of the 
+ * doors and jailer, a title panel and panels with buttons and directions to create 
+ * a fully functional game. The buttons listen for click events to allow the game to be 
+ * interactive. 
  * 
  * @author (Hannah, Henrique, Maria) 
  * @version (2015-04-20)
@@ -53,6 +57,7 @@ public class Display extends GamePanel { // add extends GamePanel
 
   /**
    * Constructor for objects of type Trial. 
+   * 
    * @throws javax.sound.sampled.LineUnavailableException
    */
   public Display() throws LineUnavailableException {
@@ -89,6 +94,7 @@ public class Display extends GamePanel { // add extends GamePanel
   public void readFile(String fileString) {
      File file = new File(fileString);
      Scanner scanner = null;
+     
      //access file
      try {
        scanner = new Scanner(file);
@@ -98,11 +104,14 @@ public class Display extends GamePanel { // add extends GamePanel
        System.out.println("Text file not found.");
          e.printStackTrace();
      }
+     
      // read line by line
      scanner.useDelimiter(System.getProperty("line.separator"));
+     
      String line ="";
      String directText = "";
      String jStartText = "";
+     
      // find directions start marker
      do {
      // if more lines in file, go to next line
@@ -113,6 +122,7 @@ public class Display extends GamePanel { // add extends GamePanel
          break;
        }
      } while (!line.equals("DSTART"));
+     
      // until end of directions found
      while (scanner.hasNext() && !line.equals("DEND")) {
        line = scanner.nextLine();
@@ -121,8 +131,10 @@ public class Display extends GamePanel { // add extends GamePanel
          directText += line;
        }
      }
+     
      // set directions
      directions.append(directText);
+     
      // find jailer start speech marker
      do {
      // if more lines in file, go to next line
@@ -133,6 +145,7 @@ public class Display extends GamePanel { // add extends GamePanel
          break;
        }
      } while (!line.equals("JSTART"));
+     
      // until end of jailer speech found
      while (scanner.hasNext() && !line.equals("JEND")) {
        line = scanner.nextLine();
@@ -154,11 +167,11 @@ public class Display extends GamePanel { // add extends GamePanel
      
      // get number of trials
      trialNum = Integer.parseInt(scanner.nextLine());
-     System.out.println(trialNum);
      int num = trialNum + 1;
      
      // for every trial
      for (int i = 1; i < num; i++) {
+       
        // create new trial
        Trial trial = new Trial(new Door(this), new Door(this), new Jailer(), i);
        
@@ -179,7 +192,7 @@ public class Display extends GamePanel { // add extends GamePanel
 
        // add trial to list
        trials.add(trial);
-}
+     }
   }
   
   /**
@@ -208,7 +221,8 @@ public class Display extends GamePanel { // add extends GamePanel
   }
   
   /**
-   * 
+   * Creates the center panel that contains the trial panel 
+   * a panel below that with scoring information.
    */
   public void createCenter() {
     centerPanel = new JPanel(new BorderLayout());
@@ -220,11 +234,14 @@ public class Display extends GamePanel { // add extends GamePanel
     resultsText = new JLabel("Will you choose right?");
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
     
+    // button that allows player to choose neither button
     JButton refuseButton = new JButton("I choose Neither!");
+    
+    // refuse button listens for click events
     refuseButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
-          System.out.println("both tigers button chosen");
           
+          // increase score if both doors have tigers behind them
           if (trials.get(currentIndex).bothHaveTigers()) {
             resultsText.setText("Yes-- both doors have tigers!");
             numCorrect++; 
@@ -234,15 +251,16 @@ public class Display extends GamePanel { // add extends GamePanel
           }
         }
       });
-      
+    
+    // set center lower panel
     centerLower = new JPanel();
     centerLower.setOpaque(false);
     centerLower.add(refuseButton);
     centerLower.add(resultsText);
     centerLower.add(scoreLabel);
     
+    // add center panels to display
     centerPanel.add(centerLower, BorderLayout.SOUTH);
-    
     add(centerPanel, BorderLayout.CENTER);
   }
   
@@ -291,9 +309,10 @@ public class Display extends GamePanel { // add extends GamePanel
     btnPanel.add(nextButton);
     southPanel.add(btnPanel, BorderLayout.SOUTH);
 
-  JButton startOverButton = new JButton("Start Over");
-  // add event listent to "start Over" button
-  startOverButton.addActionListener(new ActionListener() {
+    JButton startOverButton = new JButton("Start Over");
+    
+    // add event listent to "start Over" button
+    startOverButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
       // display first trial
       remove(centerPanel);
@@ -304,15 +323,17 @@ public class Display extends GamePanel { // add extends GamePanel
       repaint();
     }
   });
+    
   // add buttons to panels
   btnPanel.add(startOverButton);
   southPanel.add(btnPanel, BorderLayout.SOUTH);
   
   JButton showAnswerButton = new JButton("Show Behind Doors");
+  
   // add event listent to "show answer" button
   showAnswerButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
-      System.out.println("show pressed");
+      
       // show what is behind each door
       trials.get(currentIndex).showBehindDoors(); 
       revalidate();
@@ -323,7 +344,7 @@ public class Display extends GamePanel { // add extends GamePanel
   // add buttons to panels
   btnPanel.add(showAnswerButton);
   southPanel.add(btnPanel, BorderLayout.SOUTH);
-  }
+}
 
   /**
    * Adds the directions to the puzzle.
@@ -374,8 +395,14 @@ public class Display extends GamePanel { // add extends GamePanel
     add(northPanel, BorderLayout.NORTH); 
   }
   
+  /**
+   * Increase the player's score.
+   * 
+   * @param  b  whether or not score should be increased. 
+   */
   public void increaseScore(boolean b) {
     
+    // do not increase score if answer already chosen.
     if (chosenAnswer) {
       return;
     }
@@ -388,7 +415,6 @@ public class Display extends GamePanel { // add extends GamePanel
     }
   }
  
-  
   /**
    * Main method for testing purposes.
    */
