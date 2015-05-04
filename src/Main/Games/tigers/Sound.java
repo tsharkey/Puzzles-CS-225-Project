@@ -25,7 +25,7 @@ public class Sound {
     
     try {
         AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
-                "./sounds/"+soundFile+".wav"));
+                "./src/Main/Games/tigers/sounds/"+soundFile+".wav"));
         Clip clip = AudioSystem.getClip();
         clip.open(audio);
         clip.start();

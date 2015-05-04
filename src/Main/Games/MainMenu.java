@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -83,31 +84,34 @@ public class MainMenu extends GamePanel{
 
     /**
      * Load the images and info for the imagepane from file
+     *
      */
     private void loadInfos() {
 
         try {
             //scan through the text file for image names and text's label
-            Scanner scan = new Scanner(new File("./src/Main/Assets/text.txt"));
+            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));
 
             while (scan.hasNext()) {
                 String temp = scan.nextLine();
                 //check if it's the image file's name
                 if (temp.charAt(0) == 'i') {
                     try {
-                        img = ImageIO.read(new File("./src/Main/Assets/images/" + temp.substring(2) + ".png"));
+                        img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
                         images.add(img);
                     } catch (Exception e) {
                         System.out.println("Image not found");
                     }
                 }
-                else {
-                    gameTexts.add(temp);
+                else if(temp.charAt(0)=='n'){
+                    gameTexts.add(temp.substring(2));
                 }
             }
         }
         catch (FileNotFoundException ex) {
             System.out.print("Text file not found");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
 
     }
@@ -115,7 +119,8 @@ public class MainMenu extends GamePanel{
     /**
      * ActionListner for the buttons, changes states when images are clicked.
      * @param e
-     * TODO: EXPENDABLE: add more games' button listeners to switch to
+     * TODO: EXPENDABLE: add more games' button listeners to switch to,
+     * TODO: number input into setGame is button's index+2
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -124,8 +129,7 @@ public class MainMenu extends GamePanel{
             manager.setGame(2);
         }
         else if(e.getSource() == buttons.get(1)) {
-            System.out.println("To Tigers and True Love");
-//            manager.setGame(3);
+            manager.setGame(3);
         }
         else if(e.getSource() == buttons.get(2)) {
             manager.setGame(4);

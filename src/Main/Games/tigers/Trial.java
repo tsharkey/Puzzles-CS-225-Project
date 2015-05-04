@@ -48,11 +48,12 @@ public class Trial extends JPanel
    * Add components to trial panel.
    */
   public void addComponents() {
-    
-    // set background image of centerPanel
-    final ImageIcon img = new ImageIcon("./images/prison.png");
-    JPanel centerPanel = new JPanel(){ 
-       
+
+    // add items to center panel
+   // JPanel centerPanel = new JPanel();
+    final ImageIcon img = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+   JPanel centerPanel = new JPanel(){
+
     protected void paintComponent(Graphics g) {
            super.paintComponent(g);
            img1 = img.getImage();
@@ -67,9 +68,8 @@ public class Trial extends JPanel
     
     // add center panel to trial panel
     add(centerPanel, BorderLayout.CENTER);
-    
-    // set background image of topPanel
-    final ImageIcon img3 = new ImageIcon("./images/prison.png");
+       final ImageIcon img3 = new ImageIcon("./src/Main/Games/tigers/images/prison.png");
+
     JPanel topPanel = new JPanel(new BorderLayout()){ 
        
     protected void paintComponent(Graphics g) {
