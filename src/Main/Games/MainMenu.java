@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,14 +90,14 @@ public class MainMenu extends GamePanel{
 
         try {
             //scan through the text file for image names and text's label
-            Scanner scan = new Scanner(new File("./src/Main/Assets/text.txt"));
+            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));
 
             while (scan.hasNext()) {
                 String temp = scan.nextLine();
                 //check if it's the image file's name
                 if (temp.charAt(0) == 'i') {
                     try {
-                        img = ImageIO.read(new File("./src/Main/Assets/images/" + temp.substring(2) + ".png"));
+                        img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
                         images.add(img);
                     } catch (Exception e) {
                         System.out.println("Image not found");
@@ -109,6 +110,8 @@ public class MainMenu extends GamePanel{
         }
         catch (FileNotFoundException ex) {
             System.out.print("Text file not found");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
 
     }
