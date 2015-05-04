@@ -32,10 +32,10 @@ public class Jailer extends JPanel{
       setBackground(Color.black);
       
        try {
-         img1 = ImageIO.read(new File("./src/Main/Games/tigers/images/master_2.gif"));
+         img1 = ImageIO.read(new File(getClass().getResource("images/master_2.gif").toURI()));
        }
        catch (Exception e) {
-         System.out.println("Image file not found");
+         System.out.println("Jailer image file not found");
        }
       label1 = new JLabel(new ImageIcon(img1));
         

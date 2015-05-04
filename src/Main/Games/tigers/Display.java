@@ -68,7 +68,7 @@ public class Display extends GamePanel { // add extends GamePanel
     setComponents(); 
 
     // read file to create trials
-    readFile("./src/Main/Games/tigers/text/tigerText.txt");
+    readFile("text/tigerText.txt");
     
     //plays sound effects
     sound = null;
@@ -81,8 +81,6 @@ public class Display extends GamePanel { // add extends GamePanel
     // set size
     // will be set by referring to contasts in frame team class
     setPreferredSize(new Dimension(800, 600));
-    
-    System.out.println(trialNum);
   }
   
   /**
@@ -91,13 +89,17 @@ public class Display extends GamePanel { // add extends GamePanel
    * @param  fileString  path of file
    */
   public void readFile(String fileString) {
-     File file = new File(fileString);
+     //File file = new File(fileString);
      Scanner scanner = null;
+     
+     /*try {
+            //scan through the text file for image names and text's label
+            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));*/
+     
      
      //access file
      try {
-       scanner = new Scanner(file);
-
+       scanner = new Scanner(new File(getClass().getResource(fileString).toURI()));
 
      } catch (Exception e) {
        System.out.println("Text file not found.");
