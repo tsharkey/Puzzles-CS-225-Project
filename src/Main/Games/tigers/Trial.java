@@ -180,4 +180,12 @@ public class Trial extends JPanel
       return true; 
     }
   }
+  
+    /**
+   * 
+   */
+  public void resetDoors() {
+    doorOne.resetDoor();
+    doorTwo.resetDoor();
+  }
 }

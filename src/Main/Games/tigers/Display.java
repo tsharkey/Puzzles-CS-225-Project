@@ -321,6 +321,10 @@ public class Display extends GamePanel { // add extends GamePanel
       scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
       resultsText.setText("Will you choose right?");
       
+      for (Trial trial : trials) {
+        trial.resetDoors();
+      }
+      
       // display first trial
       centerPanel.remove(trials.get(currentIndex));
       currentIndex = 0;
