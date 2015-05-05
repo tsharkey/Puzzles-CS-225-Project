@@ -321,6 +321,7 @@ public class Display extends GamePanel { // add extends GamePanel
       scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
       resultsText.setText("Will you choose right?");
       
+      // reset doors in every trial
       for (Trial trial : trials) {
         trial.resetDoors();
       }

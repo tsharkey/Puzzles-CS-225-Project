@@ -181,8 +181,8 @@ public class Trial extends JPanel
     }
   }
   
-    /**
-   * 
+  /**
+   * Reset both doors to original states. 
    */
   public void resetDoors() {
     doorOne.resetDoor();

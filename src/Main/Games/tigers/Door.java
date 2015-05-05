@@ -251,8 +251,8 @@ public class Door extends JPanel
       return doorClicked; 
     }
     
-        /**
-     * 
+    /**
+     * Reset door to original state.
      */
     public void resetDoor() {
       
