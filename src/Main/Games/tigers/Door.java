@@ -252,12 +252,18 @@ public class Door extends JPanel
     }
     
     /**
-     * 
+     * Reset door to original state.
      */
-    /*public Door getDoor() {
-      return this;
+    public void resetDoor() {
+      
+      // reset image
+      if (doorClicked) {
+        remove(label2);
+        add(d1, BorderLayout.NORTH);
+        d1.setVisible(true);
+      }
+      
+      // reset door
+      doorClicked = false;
     }
-    
-    public void actionPerformed(ActionEvent evt) {
-    }*/
 }
