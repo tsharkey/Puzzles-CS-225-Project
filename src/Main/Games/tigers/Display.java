@@ -315,19 +315,18 @@ public class Display extends GamePanel { // add extends GamePanel
     // add event listent to "start Over" button
     startOverButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent evt) {
-      // display first trial
+      // reset info
+      numCorrect = 0;
+      chosenAnswer = false;
+      scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
       resultsText.setText("Will you choose right?");
+      
+      // display first trial
       centerPanel.remove(trials.get(currentIndex));
       currentIndex = 0;
       centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
       revalidate();
       repaint();
-      /*remove(centerPanel);
-      currentIndex = 0;
-      centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
-      add(centerPanel, BorderLayout.CENTER);
-      revalidate();
-      repaint();*/
     }
   });
     
