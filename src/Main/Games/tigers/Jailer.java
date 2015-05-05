@@ -2,15 +2,9 @@ package Main.Games.tigers;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.Font;;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.*;
@@ -42,18 +36,18 @@ public class Jailer extends JPanel{
       startArea = new JTextArea("");
       trialArea = new JTextArea(""); 
         
-      startArea.setFont(new Font("Sans-Serif", Font.PLAIN, 10));
-      startArea.setForeground(Color.getHSBColor(50, 54, 54));
-      startArea.setBackground(Color.black);
+      startArea.setFont(new Font("Sans-Serif", Font.PLAIN, 11));
+      startArea.setForeground(Color.getHSBColor(50, 100,25));
+      startArea.setOpaque(false);
       startArea.setEditable(false);
       startArea.setBounds(10, 10, 50, 110);
       startArea.setWrapStyleWord(true);
       startArea.setLineWrap(true);
       startArea.setSize(300, 300); 
       
-      trialArea.setFont(new Font("Sans-Serif", Font.PLAIN, 10));
-      trialArea.setBackground(Color.black);
-      trialArea.setForeground(Color.getHSBColor(50, 54, 54));
+      trialArea.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+      trialArea.setOpaque(false);
+      trialArea.setForeground(Color.red);
       trialArea.setBounds(10, 10, 50, 110);
       trialArea.setEditable(false);
       trialArea.setWrapStyleWord(true);

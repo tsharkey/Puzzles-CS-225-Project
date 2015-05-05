@@ -358,9 +358,9 @@ public class Display extends GamePanel { // add extends GamePanel
   private void createDirections() {
     
     // add directions label
-    JLabel directTitle = new JLabel("Directions");
+    JLabel directTitle = new JLabel("DIRECTIONS:");
     directTitle.setFont(new Font("Sans-serif", Font.BOLD, 15));
-    directTitle.setForeground(Color.getHSBColor(50, 54, 54));
+    directTitle.setForeground(Color.getHSBColor(50, 100,55));
     southPanel.add(directTitle, BorderLayout.NORTH);
     
     // set directions styling
@@ -369,7 +369,7 @@ public class Display extends GamePanel { // add extends GamePanel
     directions.setWrapStyleWord(true);
     directions.setLineWrap(true);
     directions.setBackground(Color.black);
-    directions.setForeground(Color.getHSBColor(50, 54, 54));
+    directions.setForeground(Color.getHSBColor(50, 100, 25));
   
     // add directions to south panel
    southPanel.add(directions, BorderLayout.CENTER); 
@@ -393,8 +393,8 @@ public class Display extends GamePanel { // add extends GamePanel
     
     // create title
     JLabel title = new JLabel("The Tiger Puzzle");
-    title.setFont(new Font("Sans-serif", Font.BOLD, 30));
-    title.setForeground(Color.getHSBColor(50, 54, 54));
+    title.setFont(new Font("Sans-serif", Font.BOLD, 22));
+    title.setForeground(Color.getHSBColor(50, 100,25));
    
     // add to north panel
     northPanel.add(title);

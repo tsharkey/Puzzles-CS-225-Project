@@ -78,15 +78,15 @@ public class Door extends JPanel
         d1.setFocusPainted(false);
 
         doorLabel = new JLabel("");
-        doorLabel.setBackground(Color.black);
-        doorLabel.setForeground(Color.getHSBColor(50, 54, 54));
+        doorLabel.setOpaque(false);
+        doorLabel.setForeground(Color.getHSBColor(50, 100,25));
 
         txtArea = new JTextArea();
         txtArea.setFont(new Font("Sans-Serif", Font.BOLD, 10));
         txtArea.setEditable(false);
         txtArea.setOpaque(false);
         txtArea.setBackground(Color.black);
-        txtArea.setForeground(Color.getHSBColor(50, 54, 54));
+        txtArea.setForeground(Color.getHSBColor(50, 100,25));
         txtArea.setBounds(10, 10, 50, 110);
         txtArea.setWrapStyleWord(true);
         txtArea.setLineWrap(true);
