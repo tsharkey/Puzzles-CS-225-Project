@@ -9,7 +9,7 @@ Catherine Huang, Thomas Sharkey
 
 Miners Game by:
 
-Henrique De Aguiar, Maria del Mar, Hannah Riggs
+Viet Dinh, Sean Johnston, Parth Patel
 
 NineStone Game by:
 
@@ -17,7 +17,7 @@ John Cyzeski, Brendan Casey, Brendan Shaughnessy
 
 Tigers Game by:
 
-Viet Dinh, Sean Johnston, Parth Patel
+Henrique De Aguiar, Maria del Mar, Hannah Riggs
 
 
 set-up
