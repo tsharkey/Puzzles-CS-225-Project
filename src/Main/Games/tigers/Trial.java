@@ -33,8 +33,8 @@ public class Trial extends JPanel
     trialNum = n;
     setLayout(new BorderLayout()); 
     trialLabel = new JLabel("Trial No. " + trialNum);
-    trialLabel.setForeground(Color.getHSBColor(50, 54, 54));
-    trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 15));
+    trialLabel.setForeground(Color.getHSBColor(50, 100, 25));
+    trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 12));
     
     doorOne = d1;
     doorTwo = d2;

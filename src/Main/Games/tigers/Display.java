@@ -14,16 +14,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.border.EmptyBorder;
-import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.imageio.ImageIO; 
-import java.awt.image.BufferedImage;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
+
 
 /**
  * The Display class, which extends the GamePanel class, is in charge of putting all the 
@@ -234,6 +227,8 @@ public class Display extends GamePanel { // add extends GamePanel
     // create components for bottom half of center panel
     resultsText = new JLabel("Will you choose right?");
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
+    scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
+    scoreLabel.setForeground(Color.green );
     
     // button that allows player to choose neither button
     JButton refuseButton = new JButton("I choose Neither!");
@@ -255,7 +250,7 @@ public class Display extends GamePanel { // add extends GamePanel
     
     // set center lower panel
     centerLower = new JPanel();
-    centerLower.setOpaque(false);
+    centerLower.setBackground(Color.darkGray);
     centerLower.add(refuseButton);
     centerLower.add(resultsText);
     centerLower.add(scoreLabel);
