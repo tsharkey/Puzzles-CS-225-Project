@@ -4,5 +4,5 @@ i.miner
 i.tigers
 i.placeholder
 n.Miners and Minutes
-n.Tigers and True Love
+n.Tigers and True Love - You must use boolean logic to choose the correct door that will free your true lovers. Be advised, a wrong door could lead to a hungry, angry tiger!
 n.Nine Stone Puzzle
