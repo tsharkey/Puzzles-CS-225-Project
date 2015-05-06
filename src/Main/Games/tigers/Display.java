@@ -180,9 +180,6 @@ public class Display extends GamePanel { // add extends GamePanel
        // set what is behind each door
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 1);
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 2);
-       
-       /*trial.setDoorNum(1, 1);
-       trial.setDoorNum(2, 2);*/
 
        // add trial to list
        trials.add(trial);

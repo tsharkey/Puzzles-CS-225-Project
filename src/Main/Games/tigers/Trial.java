@@ -145,21 +145,6 @@ public class Trial extends JPanel
     }
   }
   
- /**
-   * Sets the number of the specified door.
-   * 
-   * @param  num  the number for the door
-   * @param  doorNum  which door to set
-   */
-  public void setDoorNum(int num, int doorNum) {
-    if (doorNum == 1) {
-      doorOne.setDoorNum(num);
-    } else
-    {
-      doorTwo.setDoorNum(num);
-    }
-  }
-  
   /**
    * Reveal what is behind each door in trial.
    */
