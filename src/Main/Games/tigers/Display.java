@@ -226,6 +226,7 @@ public class Display extends GamePanel { // add extends GamePanel
     
     // create components for bottom half of center panel
     resultsText = new JLabel("Will you choose right?");
+    resultsText.setForeground(Color.getHSBColor(50, 100,25));
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
     scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
     scoreLabel.setForeground(Color.green );
@@ -297,6 +298,18 @@ public class Display extends GamePanel { // add extends GamePanel
             centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
             revalidate();
             repaint();
+            
+            // check if on final trial
+            if (currentIndex >= trialNum - 1) {
+              
+              // check if passed all trials or not
+              if (numCorrect >= trialNum) {
+                resultsText.setText("You passed all the trials! You are released from the dungeon!");
+              } else {
+                resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
+              }
+              
+            }
           }
         }
       });
