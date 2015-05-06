@@ -227,6 +227,8 @@ public class Display extends GamePanel { // add extends GamePanel
     // create components for bottom half of center panel
     resultsText = new JLabel("Will you choose right?");
     resultsText.setForeground(Color.getHSBColor(50, 100,25));
+    resultsText.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+   
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
     scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
     scoreLabel.setForeground(Color.green );
@@ -267,15 +269,16 @@ public class Display extends GamePanel { // add extends GamePanel
   private void createButtons() {
     // buttons in own panel in south
     
-    final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
-    JPanel btnPanel = new JPanel(){
+  //  final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
+    JPanel btnPanel = new JPanel();//{
+    btnPanel.setBackground(Color.black);
        
-            protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            img1 = img.getImage();
-            g.drawImage(img1, 0,0, null); 
-           }
-        };
+    //       protected void paintComponent(Graphics g) {
+     //       super.paintComponent(g);
+      //      img1 = img.getImage();
+      //      g.drawImage(img1, 0,0, null); 
+      //     }
+      //  };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
