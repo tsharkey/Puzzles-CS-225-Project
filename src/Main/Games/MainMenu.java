@@ -27,8 +27,6 @@ import java.util.Scanner;
  */
 public class MainMenu extends GamePanel{
 
-    GameManager manager;
-
     private JScrollPane scrollPane;
     private JPanel imagePane;
     private JButton button;
@@ -64,6 +62,8 @@ public class MainMenu extends GamePanel{
     private void createImagePane() {
         //make image panel, makes enough row for each game
         imagePane = new JPanel(new GridLayout(images.size(),1));
+        String html1 = "<html><body style='width: ";
+        String html2 = "px'>";
 
         for(int i = 0; i < images.size(); i++) {
             ImageIcon icon = new ImageIcon(images.get(i));
@@ -78,7 +78,8 @@ public class MainMenu extends GamePanel{
         //
         for(int i = 0; i < buttons.size(); i++) {
             imagePane.add(buttons.get(i));
-            imagePane.add(new JLabel(gameTexts.get(i)));
+            //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
+            imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
         }
     }
 
