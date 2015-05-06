@@ -298,18 +298,6 @@ public class Display extends GamePanel { // add extends GamePanel
             centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
             revalidate();
             repaint();
-            
-            // check if on final trial
-            if (currentIndex >= trialNum - 1) {
-              
-              // check if passed all trials or not
-              if (numCorrect >= trialNum) {
-                resultsText.setText("You passed all the trials! You are released from the dungeon!");
-              } else {
-                resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
-              }
-              
-            }
           }
         }
       });
@@ -420,6 +408,17 @@ public class Display extends GamePanel { // add extends GamePanel
    * @param  b  whether or not score should be increased. 
    */
   public void increaseScore(boolean b) {
+    
+    // check if on final trial
+    if (currentIndex >= trialNum - 1) {
+              
+      // check if passed all trials or not
+      if (numCorrect >= trialNum) {
+        resultsText.setText("You passed all the trials! You are released from the dungeon!");
+      } else {
+        resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
+      }       
+   }
     
     // do not increase score if answer already chosen.
     if (chosenAnswer) {
