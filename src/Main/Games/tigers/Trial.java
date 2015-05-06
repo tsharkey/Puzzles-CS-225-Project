@@ -151,7 +151,7 @@ public class Trial extends JPanel
    * @param  num  the number for the door
    * @param  doorNum  which door to set
    */
-  public void setDoorNum(String num, int doorNum) {
+  public void setDoorNum(int num, int doorNum) {
     if (doorNum == 1) {
       doorOne.setDoorNum(num);
     } else

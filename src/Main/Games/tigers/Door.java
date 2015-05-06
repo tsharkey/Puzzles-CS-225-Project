@@ -54,7 +54,7 @@ public class Door extends JPanel
     /**
      * Constructor for objects of class Door. 
      */
-    public Door(Display d)
+    public Door(Display d, int num)
     {
       // default information
       hasLover = false;
@@ -64,12 +64,22 @@ public class Door extends JPanel
       
       //new File(getClass().getResource("../Assets/text.txt").toURI())
       
+            String path = "images/door" + num + ".gif";
+      System.out.println(path);
+      
         try {
-            doorImage = new ImageIcon(getClass().getResource("images/door.gif"));
+            doorImage = new ImageIcon(getClass().getResource(path));
         }
         catch (Exception e) {
             System.out.println("Door image file not found");
         }
+      
+        /*try {
+            doorImage = new ImageIcon(getClass().getResource("images/door.gif"));
+        }
+        catch (Exception e) {
+            System.out.println("Door image file not found");
+        }*/
         d1 = new JButton(doorImage);
         
         d1.setOpaque(false);
@@ -229,8 +239,28 @@ public class Door extends JPanel
      * 
      * @param  num  the number of the door
      */
-    public void setDoorNum(String num) {
+    public void setDoorNum(int num) {
       doorLabel.setText("Door No. " + num);
+      
+      String path = "images/door" + num + ".gif";
+      System.out.println(path);
+      
+        try {
+            doorImage = new ImageIcon(getClass().getResource("images/door1.gif"));
+        }
+        catch (Exception e) {
+            System.out.println("Door image file not found");
+        }
+        
+                d1 = new JButton(doorImage);
+        
+        d1.setOpaque(false);
+        d1.setContentAreaFilled(false);
+        d1.setBorderPainted(false);
+        d1.setFocusPainted(false);
+        
+                add(d1, BorderLayout.NORTH);
+        d1.addActionListener(new doorButton());
     }
     
     /**

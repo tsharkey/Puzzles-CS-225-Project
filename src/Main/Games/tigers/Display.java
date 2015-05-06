@@ -167,7 +167,7 @@ public class Display extends GamePanel { // add extends GamePanel
      for (int i = 1; i < num; i++) {
        
        // create new trial
-       Trial trial = new Trial(new Door(this), new Door(this), new Jailer(), i);
+       Trial trial = new Trial(new Door(this, 1), new Door(this, 2), new Jailer(), i);
        
        // set door text
        trial.setDoorText(scanner.nextLine(), 1);
@@ -181,8 +181,8 @@ public class Display extends GamePanel { // add extends GamePanel
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 1);
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 2);
        
-       trial.setDoorNum("One", 1);
-       trial.setDoorNum("Two", 2);
+       /*trial.setDoorNum(1, 1);
+       trial.setDoorNum(2, 2);*/
 
        // add trial to list
        trials.add(trial);
