@@ -1,6 +1,6 @@
 //each image takes one line, and begin with i. following only the image's name
-//all images begin with i.
-//all text to be display begin with n.
+//all images begin with i and .
+//all text to be display begin with n and .
 i.miner
 i.tigers
 i.placeholder

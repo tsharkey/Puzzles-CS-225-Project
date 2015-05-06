@@ -78,6 +78,7 @@ public class MainMenu extends GamePanel{
         //
         for(int i = 0; i < buttons.size(); i++) {
             imagePane.add(buttons.get(i));
+            //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
             imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
         }
     }
