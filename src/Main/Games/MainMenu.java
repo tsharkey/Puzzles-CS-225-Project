@@ -1,6 +1,5 @@
 package Main.Games;
 
-
 import Main.Assets.Constants;
 import Main.Main;
 import Main.Managers.GameManager;
@@ -13,10 +12,10 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 /**
  * Created by Tom Sharkey and Catherine Huang on 4/15/15.
@@ -38,9 +37,10 @@ public class MainMenu extends GamePanel{
 
     /**
      * Constructor of the Main Menu to list all the playable games.
+     *
      * @param manager
      */
-    public MainMenu(GameManager manager){
+    public MainMenu(GameManager manager) {
         //setup the MainPanel
         super(manager);
         this.manager = manager;
@@ -61,14 +61,15 @@ public class MainMenu extends GamePanel{
      */
     private void createImagePane() {
         //make image panel, makes enough row for each game
+
         imagePane = new JPanel(new GridLayout(images.size(),1));
         String html1 = "<html><body style='width: ";
         String html2 = "px'>";
 
-        for(int i = 0; i < images.size(); i++) {
+        for (int i = 0; i < images.size(); i++) {
             ImageIcon icon = new ImageIcon(images.get(i));
             button = new JButton(icon);
-            button.setPreferredSize(new Dimension(icon.getIconWidth(),icon.getIconHeight()));
+            button.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setContentAreaFilled(false);
             button.addActionListener(this);
@@ -76,7 +77,7 @@ public class MainMenu extends GamePanel{
         }
 
         //
-        for(int i = 0; i < buttons.size(); i++) {
+        for (int i = 0; i < buttons.size(); i++) {
             imagePane.add(buttons.get(i));
             //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
             imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
@@ -91,70 +92,86 @@ public class MainMenu extends GamePanel{
 
         try {
             //scan through the text file for image names and text's label
-            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));
-
+            //Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));
+            Scanner scan = new Scanner(new File("../Assets/text.txt"));
             while (scan.hasNext()) {
                 String temp = scan.nextLine();
                 //check if it's the image file's name
                 if (temp.charAt(0) == 'i') {
                     try {
-                        img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
+                        //img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
+                        img = ImageIO.read(new File("../Assets/images/" + temp.substring(2) + ".png"));
                         images.add(img);
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         System.out.println("Image not found");
                     }
-                }
-                else if(temp.charAt(0)=='n'){
+                } else if (temp.charAt(0) == 'n') {
                     gameTexts.add(temp.substring(2));
                 }
             }
-        }
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             System.out.print("Text file not found");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+            try {
+                Scanner scan = new Scanner(new File("Assets/text.txt"));
+                while (scan.hasNext()) {
+                    String temp = scan.nextLine();
+                    //check if it's the image file's name
+                    if (temp.charAt(0) == 'i') {
+                        try {
+                            //img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
+                            img = ImageIO.read(new File("Assets/images/" + temp.substring(2) + ".png"));
+                            images.add(img);
+                        } catch (IOException e) {
+                            System.out.println("Image not found");
+                        }
+                    } else if (temp.charAt(0) == 'n') {
+                        gameTexts.add(temp.substring(2));
+                    }
+                }
+            }
+            catch(FileNotFoundException ex1){
+                System.out.print("Text file not found 1");
         }
-
     }
 
-    /**
-     * ActionListner for the buttons, changes states when images are clicked.
-     * @param e
-     * TODO: EXPENDABLE: add more games' button listeners to switch to,
-     * TODO: number input into setGame is button's index+2
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
+}
+
+/**
+ * ActionListner for the buttons, changes states when images are clicked.
+ *
+ * @param e TODO: EXPENDABLE: add more games' button listeners to switch to,
+ * TODO: number input into setGame is button's index+2
+ */
+@Override
+        public void actionPerformed(ActionEvent e) {
         //when click on the buttons, will switch to the assigned game
-        if(e.getSource() == buttons.get(0)){
+        if (e.getSource() == buttons.get(0)) {
             manager.setGame(2);
-        }
-        else if(e.getSource() == buttons.get(1)) {
+        } else if (e.getSource() == buttons.get(1)) {
             manager.setGame(3);
-        }
-        else if(e.getSource() == buttons.get(2)) {
+        } else if (e.getSource() == buttons.get(2)) {
             manager.setGame(4);
         }
 
     }
 
     @Override
-    public void keyTyped(KeyEvent e){
+        public void keyTyped(KeyEvent e) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e){
+        public void keyReleased(KeyEvent e) {
 
     }
 
     @Override
-    void handleInput(){
+    void handleInput() {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e){
+        public void keyPressed(KeyEvent e) {
 
     }
 

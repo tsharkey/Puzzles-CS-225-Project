@@ -16,11 +16,12 @@ import javax.swing.*;
  */
 public class MinerGamePanel extends GridBagPanel implements ActionListener {
 
-    // instane variables
-    public static JLabel time;
+    // instane variable
     private MinerGUI minerGUI;
+    // static variables
+    public static JLabel time;// show time left for all people to excape to safe place
     public static JButton move, undo, close, reset;
-    public static JLabel message = new JLabel();
+    public static JLabel message = new JLabel();// show the game messages when players try to do something not allowed
 
     //Sets the constructor for the Game Panel
     public MinerGamePanel() {
