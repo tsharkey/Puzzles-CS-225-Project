@@ -1,8 +1,5 @@
 package Main.Games;
 
-
-import Main.Assets.Constants;
-import Main.Main;
 import Main.Managers.GameManager;
 
 import javax.imageio.ImageIO;
@@ -77,9 +74,15 @@ public class MainMenu extends GamePanel{
 
         //
         for(int i = 0; i < buttons.size(); i++) {
-            imagePane.add(buttons.get(i));
-            //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
-            imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
+            if(i%2==0) {
+                imagePane.add(buttons.get(i));
+                //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
+                imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
+            }
+            else{
+                imagePane.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
+                imagePane.add(buttons.get(i));
+            }
         }
     }
 
