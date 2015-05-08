@@ -54,7 +54,7 @@ public class Door extends JPanel
     /**
      * Constructor for objects of class Door. 
      */
-    public Door(Display d)
+    public Door(Display d, int num)
     {
       // default information
       hasLover = false;
@@ -62,14 +62,15 @@ public class Door extends JPanel
       
       display = d;
       
-      //new File(getClass().getResource("../Assets/text.txt").toURI())
+       String path = "images/door" + num + ".gif";
       
         try {
-            doorImage = new ImageIcon(getClass().getResource("images/door.gif"));
+            doorImage = new ImageIcon(getClass().getResource(path));
         }
         catch (Exception e) {
             System.out.println("Door image file not found");
         }
+
         d1 = new JButton(doorImage);
         
         d1.setOpaque(false);
@@ -222,15 +223,6 @@ public class Door extends JPanel
     public void setHasLover(boolean b) 
     {
         hasLover = b; 
-    }
-    
-    /**
-     * Sets the number of the door.
-     * 
-     * @param  num  the number of the door
-     */
-    public void setDoorNum(String num) {
-      doorLabel.setText("Door No. " + num);
     }
     
     /**

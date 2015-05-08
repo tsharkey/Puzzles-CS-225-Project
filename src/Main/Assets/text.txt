@@ -1,8 +1,9 @@
 //each image takes one line, and begin with i. following only the image's name
-//all images
+//all images begin with i and .
+//all text to be display begin with n and .
 i.miner
 i.tigers
 i.placeholder
 n.Miners and Minutes
-n.Tigers and True Love
+n.Tigers and True Love - You must use boolean logic to choose the correct door that will free your true lovers. Be advised, a wrong door could lead to a hungry, angry tiger!
 n.Nine Stone Puzzle

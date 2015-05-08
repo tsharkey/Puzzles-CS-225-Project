@@ -46,13 +46,14 @@ public class Jailer extends JPanel{
       startArea.setSize(300, 300); 
       
       trialArea.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+     // trialArea.setBackground(Color.darkGray);
       trialArea.setOpaque(false);
       trialArea.setForeground(Color.red);
-      trialArea.setBounds(10, 10, 50, 110);
       trialArea.setEditable(false);
       trialArea.setWrapStyleWord(true);
       trialArea.setLineWrap(true);
-      trialArea.setSize(300, 300); 
+      trialArea.setBounds(10, 10, 50, 110);
+      trialArea.setSize(300, 450); 
         
       // set Layout and arrange components
       setLayout(new BorderLayout());

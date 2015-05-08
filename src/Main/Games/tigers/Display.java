@@ -167,7 +167,7 @@ public class Display extends GamePanel { // add extends GamePanel
      for (int i = 1; i < num; i++) {
        
        // create new trial
-       Trial trial = new Trial(new Door(this), new Door(this), new Jailer(), i);
+       Trial trial = new Trial(new Door(this, 1), new Door(this, 2), new Jailer(), i);
        
        // set door text
        trial.setDoorText(scanner.nextLine(), 1);
@@ -180,9 +180,6 @@ public class Display extends GamePanel { // add extends GamePanel
        // set what is behind each door
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 1);
        trial.setDoorHasLover(Boolean.parseBoolean(scanner.nextLine()), 2);
-       
-       trial.setDoorNum("One", 1);
-       trial.setDoorNum("Two", 2);
 
        // add trial to list
        trials.add(trial);
@@ -226,6 +223,9 @@ public class Display extends GamePanel { // add extends GamePanel
     
     // create components for bottom half of center panel
     resultsText = new JLabel("Will you choose right?");
+    resultsText.setForeground(Color.getHSBColor(50, 100,25));
+    resultsText.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+   
     scoreLabel = new JLabel("Correct: 0/" + trialNum);
     scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
     scoreLabel.setForeground(Color.green );
@@ -266,15 +266,16 @@ public class Display extends GamePanel { // add extends GamePanel
   private void createButtons() {
     // buttons in own panel in south
     
-    final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
-    JPanel btnPanel = new JPanel(){
+  //  final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
+    JPanel btnPanel = new JPanel();//{
+    btnPanel.setBackground(Color.black);
        
-            protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            img1 = img.getImage();
-            g.drawImage(img1, 0,0, null); 
-           }
-        };
+    //       protected void paintComponent(Graphics g) {
+     //       super.paintComponent(g);
+      //      img1 = img.getImage();
+      //      g.drawImage(img1, 0,0, null); 
+      //     }
+      //  };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
@@ -407,6 +408,17 @@ public class Display extends GamePanel { // add extends GamePanel
    * @param  b  whether or not score should be increased. 
    */
   public void increaseScore(boolean b) {
+    
+    // check if on final trial
+    if (currentIndex >= trialNum - 1) {
+              
+      // check if passed all trials or not
+      if (numCorrect >= trialNum) {
+        resultsText.setText("You passed all the trials! You are released from the dungeon!");
+      } else {
+        resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
+      }       
+   }
     
     // do not increase score if answer already chosen.
     if (chosenAnswer) {
