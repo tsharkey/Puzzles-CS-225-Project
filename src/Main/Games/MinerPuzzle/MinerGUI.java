@@ -19,14 +19,14 @@ import javax.swing.*;
 public class MinerGUI extends JPanel implements MouseListener {
 
     // instance variables
-    private Miner[] miners;
-    private Ellipse2D[] circles;
-    private int time;
+    private Miner[] miners;// an array of 4 miners.
+    private Ellipse2D[] circles;//present all people by circles with different colors
+    private int time;//time that a specific person need to take to go through the tunnel
 
-    public static int number_ready_to_go = 0;
-    public static boolean laternIsUsed = false;
-    public static ArrayList<boolean[]> undoList = new ArrayList<boolean[]>();
-    public static ArrayList<Integer> timeList = new ArrayList<Integer>();
+    public static int number_ready_to_go = 0;//maximum 2 people can move at a time
+    public static boolean laternIsUsed = false;//tell if the latern is being used, and other people have to wait.
+    public static ArrayList<boolean[]> undoList = new ArrayList<boolean[]>();// the list is used for undo action
+    public static ArrayList<Integer> timeList = new ArrayList<Integer>();// save state of time of every movement
 
     /**
      * Sets the Constructor for the Miner GUI
@@ -39,7 +39,7 @@ public class MinerGUI extends JPanel implements MouseListener {
         miners[2] = new Miner("Fiona", 4, Color.PINK, 0, 100);
         miners[3] = new Miner("Edward", 8, Color.ORANGE, 0, 150);
 
-        circles = new Ellipse2D[4];
+        circles = new Ellipse2D[4];// 4 circles
         time = 0;
         this.addMouseListener(this);
     }
@@ -51,34 +51,37 @@ public class MinerGUI extends JPanel implements MouseListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // draw the game's background (dangerous area, safe area, ready-to-move area, the tunnel)
         g.setColor(Color.RED);
-        g.fillRect(0, 0, 50, 200);
+        g.fillRect(0, 0, 50, 200);//dangerous area
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLUE);//ready-to-move area
         g.fillRect(50, 50, 50, 100);
 
-        g.setColor(Color.BLACK);
+        g.setColor(Color.BLACK);// the dark tunnel
         g.fillRect(100, 50, 300, 100);
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLUE);//ready-to-move area
         g.fillRect(400, 50, 50, 100);
 
-        g.setColor(Color.GREEN);
+        g.setColor(Color.GREEN);//safe area
         g.fillRect(450, 0, 50, 200);
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.RED);
+        //when the latern is at safe area
         if (!Miner.LaternInSafeZone) {
-            Ellipse2D circle = new Ellipse2D.Double(50, 0, 50, 50);
+            Ellipse2D circle = new Ellipse2D.Double(50, 0, 50, 50);// the circle presenting the latern
             g2d.fill(circle);
             g2d.setColor(Color.BLACK);
             g2d.drawString("Latern", 55, 30);
-        } else {
-            Ellipse2D circle = new Ellipse2D.Double(400, 0, 50, 50);
+        } else {//when the latern is at dangerous area
+            Ellipse2D circle = new Ellipse2D.Double(400, 0, 50, 50);//the circle presenting the latern
             g2d.fill(circle);
             g2d.setColor(Color.BLACK);
             g2d.drawString("Latern", 405, 30);
         }
+        //draw all the circles(people) base on their positions
         for (int i = 0; i < miners.length; i++) {
             g2d.setColor(miners[i].getColor());
             circles[i] = new Ellipse2D.Double(miners[i].getX(), miners[i].getY(), 50, 50);
@@ -90,20 +93,27 @@ public class MinerGUI extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        //not use
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        //not use
     }
 
     /**
      * Override the mouseReleaded method
+     * to move the people from dangerous area to ready-to-move area or vice versa
+     * to move the people from safe area to ready-to-move area or vice versa
+     * when clicking on a circle(person)
      * @param e 
      */
     @Override
     public void mouseReleased(MouseEvent e) {
         for (int i = 0; i < miners.length; i++) {
+            //when clicking on the person, and the latern is not in use
             if ((e.getButton() == 1) && circles[i].contains(e.getX(), e.getY()) && !laternIsUsed) {
+                //when the latern is not at the same side as the person clicked on
                 if (miners[i].isSafe != Miner.LaternInSafeZone) {
                     new Thread() {
                         @Override
@@ -118,24 +128,28 @@ public class MinerGUI extends JPanel implements MouseListener {
 
                         }
                     }.start();
-                } else if (miners[i].getX() == 0) {
-                    if (number_ready_to_go < 2) {
-                        miners[i].isSafe = false;
+                }
+                //when the latern is at the same side as the person clicked on
+                else if (miners[i].getX() == 0) {//the person is at dangerous area
+                    if (number_ready_to_go < 2) {//less than 2 people at ready-to-move area
+                        miners[i].isSafe = false;//currently, the person is at dangerous area
                         MinerGamePanel.reset.setEnabled(true);
                         MinerGamePanel.undo.setEnabled(true);
                         MinerGamePanel.move.setEnabled(true);
-                        number_ready_to_go++;
-                        miners[i].setX(50);
+                        number_ready_to_go++;//increase the number of people, who are at ready-to-move area
+                        miners[i].setX(50);//set new location for the person(the person move to ready-to-move area)
                         miners[i].setY(50 * number_ready_to_go);
+                        //if there are 2 people moving at a time
+                        //then the quicker one will be slow down because of the slower one
                         if (number_ready_to_go == 1) {
-
                             time = miners[i].getTime();
                         } else {
                             if (miners[i].getTime() > time) {
                                 time = miners[i].getTime();
                             }
                         }
-                    } else {
+                    } 
+                    else {//when there are 2 people at ready-to-move area already
                         new Thread() {
                             @Override
                             public void run() {
@@ -150,7 +164,9 @@ public class MinerGUI extends JPanel implements MouseListener {
                             }
                         }.start();
                     }
-                } else if (miners[i].getX() == 450) {
+                } 
+                else if (miners[i].getX() == 450) {//when the person is at safe area
+                    //repeat the above piece of code
                     if (number_ready_to_go < 2) {
                         number_ready_to_go++;
                         miners[i].isSafe = true;
@@ -179,7 +195,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                             }
                         }.start();
                     }
-
+                //when the person is at ready-to-move area, move him back to dangerous area or safe area
                 } else if (miners[i].getX() == 50) {
                     number_ready_to_go--;
                     if (number_ready_to_go == 0) {
@@ -187,7 +203,8 @@ public class MinerGUI extends JPanel implements MouseListener {
                     }
                     miners[i].setX(0);
                     miners[i].setY(miners[i].getOY());
-                    for (int j = 0; j < miners.length; j++) {
+                    //The second person who is ready to move will take place of the first person, who is removed from ready-to-move area
+                    for(int j = 0; j < miners.length; j++) {
                         if (miners[j].getX() == 50) {
                             time = miners[j].getTime();
                             if (miners[j].getY() == 100) {
@@ -196,6 +213,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                             break;
                         }
                     }
+                //when the person is at ready-to-move area, move him back to safe area
                 } else if (miners[i].getX() == 400) {
                     number_ready_to_go--;
                     if (number_ready_to_go == 0) {
@@ -203,6 +221,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                     }
                     miners[i].setX(450);
                     miners[i].setY(miners[i].getOY());
+                    //The second person who is ready to move will take place of the first person, who is removed from ready-to-move area
                     for (int j = 0; j < miners.length; j++) {
                         if (miners[j].getX() == 400) {
                             time = miners[j].getTime();
@@ -221,10 +240,12 @@ public class MinerGUI extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        //not use
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        //not use
     }
 
     /**
@@ -234,11 +255,11 @@ public class MinerGUI extends JPanel implements MouseListener {
     public void update_locations() {
 
         MinerGamePanel.move.setEnabled(false);
-        new Thread() {
+        new Thread() {//the thread to make the circle changing its location continuously
             @Override
             public void run() {
                 laternIsUsed = true;
-                int count = 0;
+                int count = 0;//make a movement every 1000000*time(of that person) excuting times of the content of while loop
                 int speed1 = 0;
                 do {
                     speed1++;
@@ -262,7 +283,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                         count++;
                         speed1 = 0;
                     }
-                } while (count < 350);
+                } while (count < 350);//the length of the tunnel is 350 pixels
 
                 if (Miner.orignalTime == 0) {
                     boolean win = true;
@@ -347,6 +368,7 @@ public class MinerGUI extends JPanel implements MouseListener {
 
     /**
      * Reset method, to reset the game when the player wants to reset
+     * reset to original game state
      */
     public void reset() {
         for (Miner miner : miners) {
@@ -358,7 +380,8 @@ public class MinerGUI extends JPanel implements MouseListener {
     }
 
     /**
-     * Save State method, which saves the state of the game when the user plays
+     * Save State method, which saves the state of the game into an arraylist 
+     * every time the player make a movement between dangerous area and safe area
      */
     public void saveState() {
         undoList.add(new boolean[5]);
@@ -371,6 +394,7 @@ public class MinerGUI extends JPanel implements MouseListener {
 
     /**
      * Sets the PreState of the Miner puzzle
+     * used for undo button
      */
     public void setPreState() {
         for (int i = 0; i < miners.length; i++) {

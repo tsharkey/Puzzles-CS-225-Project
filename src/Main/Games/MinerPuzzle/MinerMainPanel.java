@@ -18,8 +18,8 @@ public class MinerMainPanel extends GamePanel {
     private JLabel gameTitle;
     private MinerGamePanel minerGamePanel;
     private JTextArea instruction;
-    private GridBagLayout layout;
-    private GridBagConstraints constraints;
+    private GridBagLayout layout;//apply gridbag layout for this panel
+    private GridBagConstraints constraints;//apply gridbag constraints for this panel
 
     // Sets the constructor for the Miner Main Panel for the puzzle
     public MinerMainPanel() 
@@ -37,21 +37,22 @@ public class MinerMainPanel extends GamePanel {
         this.setAlignmentX(RIGHT_ALIGNMENT);
 
         minerGamePanel = new MinerGamePanel();
-        instruction = new JTextArea(30, 17);
+        instruction = new JTextArea();
+        instruction.setPreferredSize(new Dimension(800,450));
        
         instruction.setWrapStyleWord(true);
-        instruction.setFont(new Font("Serif", Font.ITALIC, 12));
+        instruction.setFont(new Font("Serif", Font.ITALIC, 18));
         instruction.setForeground(new Color(28, 94, 161));
         instruction.setEditable(false);
-        addText();
+        this.addText();
         
         gameTitle = new JLabel("Miner Puzzle");
         gameTitle.setForeground(Color.PINK);
         gameTitle.setFont(new Font("Serif", Font.BOLD, 40));
         
-        addComponent(gameTitle, 0, 0, 1, 1);
-        addComponent(instruction, 1, 0, 1, 2);
-        addComponent(minerGamePanel, 0, 1, 1, 1);
+        this.addComponent(gameTitle, 0, 0, 1, 1);
+        this.addComponent(instruction, 0, 1, 1, 1);
+        this.addComponent(minerGamePanel, 0, 2, 1, 1);
     }
 
     /**
@@ -80,33 +81,36 @@ public class MinerMainPanel extends GamePanel {
     {
         instruction.append("INSTRUCTIONS: \n \n");
         instruction.append("Frist select the Miners, then"+ '\n');
-        instruction.append("1) Click on MOVE button\n to move from cave to safety" + '\n');
-        instruction.append("2) Click on UNDO button\n to move to the previous state" + '\n');
-        instruction.append("3) Click on RESET button\n to allow to restart the puzzle" + '\n');
-        instruction.append("4) Click on CLOSE button\n to exit the puzzle" + '\n'); 
+        instruction.append("1) Click on MOVE button to move from cave to safety" + '\n');
+        instruction.append("2) Click on UNDO button to move to the previous state" + '\n');
+        instruction.append("3) Click on RESET button to allow to restart the puzzle" + '\n');
+        instruction.append("4) Click on CLOSE button to exit the puzzle" + '\n'); 
         instruction.append("" + '\n');
        // instruction.append("" + '\n');
         instruction.append("GAME INFORMATION: \n \n");
-        instruction.append("Welcome to the Miners\n and Minutes Puzzle! " + '\n');
-        instruction.append("4 miners have been\n trapped in a cavern\n and collapse in 15 min." + '\n');
-        instruction.append("Has an open tunnel\n leading to safety," + '\n');
-        instruction.append("And it requires\n a latern to travel," + '\n');
-        instruction.append("And the miners only\n have one working\n lantern to use." + '\n');
-        instruction.append("Only 2 miners can\n travel the tunnel \nat a time with the latern. " + '\n');
+        instruction.append("Welcome to the Miners and Minutes Puzzle! " + '\n');
+        instruction.append("4 miners have been trapped in a cavern and collapse in 15 minutes." + '\n');
+        instruction.append("There is an open tunnel leading to safety," + '\n');
+        instruction.append("And it requires a latern to travel,");
+        instruction.append("And the miners only have one working lantern to use." + '\n');
+        instruction.append("Only 2 miners can travel the tunnel at a time with the latern. " + '\n');
         instruction.append("Four Miners are: " + '\n');
-        instruction.append(" a. Onika: uninjured and\n can walk in one minute" + '\n');
-        instruction.append(" b. Twitch has a limp and\n can walk in two minutes" + '\n');
-        instruction.append(" c. Fiona has a broken foot\n and can walk in\n four minutes" + '\n');
-        instruction.append(" d. Edward is seriously\n injured and can walk\n in eight minutes" + '\n');
+        instruction.append(" a. Onika: uninjured and can walk in one minute" + '\n');
+        instruction.append(" b. Twitch has a limp and can walk in two minutes" + '\n');
+        instruction.append(" c. Fiona has a broken foot and can walk in four minutes" + '\n');
+        instruction.append(" d. Edward is seriously injured and can walk in eight minutes" + '\n');
         instruction.append("" + '\n');
-        instruction.append("Bascially, how can\n all the miners\n get out safely?" + '\n');
-        instruction.append("Time Dispayed to\n follow your pogress." + '\n');
-        instruction.append("At the end, it\n will declare win\n or lose." + '\n');
-        
+        instruction.append("Bascially, how can all the miners get out safely?");
+        instruction.append("Time Dispayed to follow your pogress." + '\n');
+        instruction.append("At the end, it will declare win or lose.");
     }
     
     
-
+    /**
+     *  This game does not use following methods.
+     *  Then they are not overrided.
+     * @param e
+    */
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -123,6 +127,7 @@ public class MinerMainPanel extends GamePanel {
     }
 
 //    @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
 
     }

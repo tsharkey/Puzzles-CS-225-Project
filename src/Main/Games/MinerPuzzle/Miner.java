@@ -12,17 +12,17 @@ public class Miner {
     
     // instanve variables/fields
     private String name;
-    private int time;
-    public boolean isSafe;
-    public static boolean LaternInSafeZone = false;
-    public static int orignalTime = 15;
+    private int time;//time that the person take to go through the tunnel
+    public boolean isSafe;//tell the current location of the person(at safe area or dagerous area)
+    public static boolean LaternInSafeZone = false;//tell the current location of the latern(at safe area or dagerous area)
+    public static int orignalTime = 15;//time left for all people excaping successfully
     
-    private int x;
-    private int orig_X;
-    private int orig_Y;
-    private int y;
+    private int x;// current x of the person
+    private int orig_X;//original x of the person
+    private int orig_Y;//original y of the person
+    private int y;//current y of the person
     
-    private Color color;
+    private Color color;//color of the circle presenting the person
     
     /**
      * Constructor of Miner
@@ -89,7 +89,7 @@ public class Miner {
     }
     
     /**
-     * Move the miner from one side to the other
+     * Move the circle, which represents the person, by increasing or decreasing x of the circle by 1 pixel
      */
     public void move()
     {
