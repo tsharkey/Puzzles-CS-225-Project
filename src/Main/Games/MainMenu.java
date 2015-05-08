@@ -11,9 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -87,17 +87,38 @@ public class MainMenu extends GamePanel{
      *
      */
     private void loadInfos() {
+        File file = null;
+        String resource = "/Main/Assets/text.txt";
+        URL res = getClass().getResource(resource);
+        if (res.toString().startsWith("jar:")) {
+            try {
+                InputStream input = getClass().getResourceAsStream(resource);
+                file = File.createTempFile("tempfile", ".tmp");
+                OutputStream out = new FileOutputStream(file);
+                int read;
+                byte[] bytes = new byte[1024];
 
+                while ((read = input.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+                file.deleteOnExit();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }else {
+            //this will probably work in your IDE, but not from a JAR
+            file = new File(res.getFile());
+        }
         try {
             //scan through the text file for image names and text's label
-            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));
-
+            Scanner scan = new Scanner(file);
             while (scan.hasNext()) {
                 String temp = scan.nextLine();
                 //check if it's the image file's name
                 if (temp.charAt(0) == 'i') {
                     try {
-                        img = ImageIO.read(new File(getClass().getResource("../Assets/images/" + temp.substring(2) + ".png").toURI()));
+                        //img = ImageIO.read(new File(getClass().getResourceAsStream("../Assets/images/" + temp.substring(2) + ".png")));
+                        img = ImageIO.read(getClass().getResourceAsStream("/Main/Assets/images/" + temp.substring(2) + ".png"));
                         images.add(img);
                     } catch (Exception e) {
                         System.out.println("Image not found");
@@ -110,9 +131,9 @@ public class MainMenu extends GamePanel{
         }
         catch (FileNotFoundException ex) {
             System.out.print("Text file not found");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        } //catch (URISyntaxException e) {
+          //  e.printStackTrace();
+        //}
 
     }
 
