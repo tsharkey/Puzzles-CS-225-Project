@@ -1,6 +1,7 @@
 package Main.Games.tigers;
 
 import Main.Games.GamePanel;
+import Main.Assets.Constants;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -29,7 +30,7 @@ import java.util.Scanner;
  * @version (2015-04-20)
  */
 
-public class Display extends GamePanel { // add extends GamePanel
+public class Display extends GamePanel {
   // keep track of trials
   private ArrayList<Trial> trials;
   private int currentIndex; 
@@ -72,8 +73,7 @@ public class Display extends GamePanel { // add extends GamePanel
     createCenter(); 
   
     // set size
-    // will be set by referring to contasts in frame team class
-    setPreferredSize(new Dimension(800, 600));
+    setPreferredSize(new Dimension(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT));
   }
   
   /**
@@ -411,7 +411,7 @@ public class Display extends GamePanel { // add extends GamePanel
     
     // check if on final trial
     if (currentIndex >= trialNum - 1) {
-              
+      
       // check if passed all trials or not
       if (numCorrect >= trialNum) {
         resultsText.setText("You passed all the trials! You are released from the dungeon!");
@@ -432,27 +432,6 @@ public class Display extends GamePanel { // add extends GamePanel
       chosenAnswer = true;
     }
   }
- 
-  /**
-   * Main method for testing purposes.
-   */
-  public static void main(String[] args)  {
-
-   JFrame frame = new JFrame();
-
-   Display display = null;
-
-   try {
-     display = new Display();
-   }
-   catch (Exception e) {
-     System.out.println("Display could not be created.");
-   }
-
-   frame.add(display);
-   frame.pack();
-   frame.setVisible(true);
- }
 
     @Override
     public void actionPerformed(ActionEvent e){
