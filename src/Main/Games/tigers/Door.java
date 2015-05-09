@@ -202,6 +202,8 @@ public class Door extends JPanel
         revalidate();
         repaint();
         }
+        // the door has been shown
+        doorClicked = true;
     }
     
     /**
