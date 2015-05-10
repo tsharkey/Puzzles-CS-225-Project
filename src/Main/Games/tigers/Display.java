@@ -35,6 +35,7 @@ public class Display extends GamePanel {
   private ArrayList<Trial> trials;
   private int currentIndex; 
   private int trialNum;
+  private int loverNum;
   private int numCorrect;
   private boolean chosenAnswer;
  
@@ -84,11 +85,6 @@ public class Display extends GamePanel {
   public void readFile(String fileString) {
      //File file = new File(fileString);
      Scanner scanner = null;
-     
-     /*try {
-            //scan through the text file for image names and text's label
-            Scanner scan = new Scanner(new File(getClass().getResource("../Assets/text.txt").toURI()));*/
-     
      
      //access file
      try {
@@ -162,6 +158,7 @@ public class Display extends GamePanel {
      // get number of trials
      trialNum = Integer.parseInt(scanner.nextLine());
      int num = trialNum + 1;
+     loverNum = Integer.parseInt(scanner.nextLine());
      
      // for every trial
      for (int i = 1; i < num; i++) {
@@ -226,7 +223,7 @@ public class Display extends GamePanel {
     resultsText.setForeground(Color.getHSBColor(50, 100,25));
     resultsText.setFont(new Font("Sans-Serif", Font.BOLD, 12));
    
-    scoreLabel = new JLabel("Correct: 0/" + trialNum);
+    scoreLabel = new JLabel("Correct: 0/" + loverNum);
     scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
     scoreLabel.setForeground(Color.green );
     
@@ -314,7 +311,7 @@ public class Display extends GamePanel {
       // reset info
       numCorrect = 0;
       chosenAnswer = false;
-      scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
+      scoreLabel.setText("Score: " + numCorrect + "/" + loverNum);
       resultsText.setText("Will you choose right?");
       
       // reset doors in every trial
@@ -408,18 +405,7 @@ public class Display extends GamePanel {
    * @param  b  whether or not score should be increased. 
    */
   public void increaseScore(boolean b) {
-    
-    // check if on final trial
-    if (currentIndex >= trialNum - 1) {
-      
-      // check if passed all trials or not
-      if (numCorrect >= trialNum) {
-        resultsText.setText("You passed all the trials! You are released from the dungeon!");
-      } else {
-        resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
-      }       
-   }
-    
+
     // do not increase score if answer already chosen.
     if (chosenAnswer) {
       return;
@@ -427,10 +413,21 @@ public class Display extends GamePanel {
     
     if (b) {
       numCorrect++;
-      scoreLabel.setText("Score: " + numCorrect + "/" + trialNum);
+      scoreLabel.setText("Score: " + numCorrect + "/" + loverNum);
     } else {
       chosenAnswer = true;
     }
+    
+    // check if on final trial
+    if (currentIndex >= trialNum - 1) {
+      
+      // check if passed all trials or not
+      if (numCorrect >= loverNum) {
+        resultsText.setText("You passed all the trials! You are released from the dungeon!");
+      } else {
+        resultsText.setText("You did not pass all the trials! You are still trapped in the dungeon!");
+      }       
+   }
   }
 
     @Override

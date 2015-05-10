@@ -1,5 +1,5 @@
 DSTART
-Based on the statements below each door and the statements of the jailer (who may or may not be lying), you must choose the door(s) you believe has a lover behind it. Find a lover every turn and you can ecape the dungeon! Click on the doors to open them or click on the "I choose Neither!" button to choose neither. You will receive a point for every lover found (if no tiger found first) and bonus points if you find both lovers during a trial. 
+Based on the statements below each door and the statements of the jailer (who may or may not be lying), you must choose the door(s) you believe has a lover behind it. Click on the doors to open them or click on the "I choose Neither!" button to choose neither. You will receive a point for every lover found. You must find every lover behind a door during each trial to escape! 
 DEND
 
 JSTART
@@ -8,6 +8,7 @@ JEND
 
 TSTART
 7
+8
 In this room there is one of your true loves, and in the other room there is a tiger.
 In one of these rooms there sits one of your true loves, and in one of these rooms there is a tiger.
 One of the statements is true and one is false!
