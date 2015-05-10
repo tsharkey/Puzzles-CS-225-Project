@@ -1,8 +1,0 @@
-//each image takes one line, and begin with i. following only the image's name
-//all images
-i.miner
-i.tigers
-i.placeholder
-n.Miners and Minutes
-n.Tigers and True Love
-n.Nine Stone Puzzle

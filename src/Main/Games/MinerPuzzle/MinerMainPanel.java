@@ -38,7 +38,7 @@ public class MinerMainPanel extends GamePanel {
 
         minerGamePanel = new MinerGamePanel();
         instruction = new JTextArea();
-        instruction.setPreferredSize(new Dimension(800,450));
+        instruction.setPreferredSize(new Dimension(800,350));
        
         instruction.setWrapStyleWord(true);
         instruction.setFont(new Font("Serif", Font.ITALIC, 18));
@@ -88,19 +88,12 @@ public class MinerMainPanel extends GamePanel {
         instruction.append("" + '\n');
        // instruction.append("" + '\n');
         instruction.append("GAME INFORMATION: \n \n");
-        instruction.append("Welcome to the Miners and Minutes Puzzle! " + '\n');
-        instruction.append("4 miners have been trapped in a cavern and collapse in 15 minutes." + '\n');
-        instruction.append("There is an open tunnel leading to safety," + '\n');
-        instruction.append("And it requires a latern to travel,");
-        instruction.append("And the miners only have one working lantern to use." + '\n');
-        instruction.append("Only 2 miners can travel the tunnel at a time with the latern. " + '\n');
         instruction.append("Four Miners are: " + '\n');
         instruction.append(" a. Onika: uninjured and can walk in one minute" + '\n');
         instruction.append(" b. Twitch has a limp and can walk in two minutes" + '\n');
         instruction.append(" c. Fiona has a broken foot and can walk in four minutes" + '\n');
         instruction.append(" d. Edward is seriously injured and can walk in eight minutes" + '\n');
         instruction.append("" + '\n');
-        instruction.append("Bascially, how can all the miners get out safely?");
         instruction.append("Time Dispayed to follow your pogress." + '\n');
         instruction.append("At the end, it will declare win or lose.");
     }
