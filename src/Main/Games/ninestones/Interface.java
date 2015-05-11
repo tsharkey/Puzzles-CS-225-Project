@@ -105,10 +105,9 @@ public class Interface extends GamePanel {
 	    c.gridx = 0;
 	    c.gridy = 1;
 	    this.add(this.buttonPanel, c);
-		////
 		
-		this.setSize(800,
-				600);
+	    //
+	    this.setPreferredSize(new Dimension(Main.Assets.Constants.SCREEN_WIDTH, Main.Assets.Constants.SCREEN_HEIGHT));
 		this.setVisible(true);
 	}
 	
@@ -120,9 +119,9 @@ public class Interface extends GamePanel {
 		this.rockSelectInfo.setWrapStyleWord(true);
 		this.rockSelectInfo.setEditable(false);
 		this.rockSelectInfo.setBackground(Color.GRAY);
-		this.rockSelectInfo.setText("Select rocks then add them to either side of the scale.\n
-						Hit weigh to find out which side is heavier.\n
-							Try to find the heaviest rock and buy it.");
+		this.rockSelectInfo.setText("Select rocks then add them to either side of the scale.\n"
+						+"Hit weigh to find out which side is heavier.\n"
+							+"Try to find the heaviest rock and buy it.");
 		Font font = new Font("Verdana", Font.BOLD, 12);
 		this.rockSelectInfo.setFont(font);
 		this.rockSelectInfo.setForeground(Color.BLUE);
