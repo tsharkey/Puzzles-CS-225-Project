@@ -30,6 +30,7 @@ public class MainMenu extends GamePanel{
     private JButton button;
     private BufferedImage img;
     //TODO: EXPANDABLE read from text file, make sure to add new files and text into appropriated areas.
+    //ArrayList for the images, texts, buttons, and individual game's panel
     private ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
     private ArrayList<String> gameTexts = new ArrayList<String>();
     private ArrayList<JButton> buttons = new ArrayList<JButton>();
@@ -81,9 +82,10 @@ public class MainMenu extends GamePanel{
         for (int i = 0; i < buttons.size(); i++) {
             JPanel game = new JPanel(new GridLayout(1,1));
 
+            //puts layout
             if (i % 2 == 0) {
                 game.add(buttons.get(i));
-                //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH
+                //hard coded in html TODO: make it response to Constants.SCREEN_WIDTH if possible
                 game.add(new JLabel(html1 + "300" + html2 + gameTexts.get(i)));
                 game.setBorder(BorderFactory.createLineBorder(Color.black));
             } else {
@@ -135,7 +137,7 @@ public class MainMenu extends GamePanel{
                 if (temp.charAt(0) == 'i') {
                     try {
                         //img = ImageIO.read(new File(getClass().getResourceAsStream("../Assets/images/" + temp.substring(2) + ".png")));
-                        img = ImageIO.read(getClass().getResourceAsStream("/Main/Assets/images/" + temp.substring(2) + ".png"));
+                        img = ImageIO.read(getClass().getResourceAsStream("/Main/Assets/images/" + temp.substring(2)));
                         images.add(img);
                     } catch (IOException e) {
                         System.out.println("Image not found");
@@ -154,17 +156,18 @@ public class MainMenu extends GamePanel{
 /**
  * ActionListner for the buttons, changes states when images are clicked.
  *
- * @param e TODO: EXPENDABLE: add more games' button listeners to switch to,
- * TODO: number input into setGame is button's index+2
+ * @param e
+ * TODO: EXPENDABLE: add more games' button listeners to switch to,
+ * TODO: number input into setGame is game's index+2
  */
 @Override
         public void actionPerformed(ActionEvent e) {
         //when click on the buttons, will switch to the assigned game
-        if (e.getSource() == buttons.get(0)) {
+        if (e.getSource() == gameSections.get(0)) {
             manager.setGame(2);
-        } else if (e.getSource() == buttons.get(1)) {
+        } else if (e.getSource() == gameSections.get(1)) {
             manager.setGame(3);
-        } else if (e.getSource() == buttons.get(2)) {
+        } else if (e.getSource() == gameSections.get(2)) {
             manager.setGame(4);
         }
 

@@ -1,9 +1,9 @@
-//each image takes one line, and begin with i. following only the image's name
+//each image takes one line, and begin with i. following the image's name with file type
 //all images begin with i and .
 //all text to be display begin with n and .
-i.miner
-i.tigers
-i.placeholder
+i.miner.png
+i.tigers.png
+i.placeholder.png
 n.Miners and Minutes - 4 miners have been trapped in a cavern and collapse in 15 minutes. There is an open tunnel leading to safety. And it requires a latern to travel. The miners only have one working lantern to use. Only 2 miners can travel the tunnel at a time with the latern. There is an open tunnel leading to safety. How can all the miners get out safely?
 n.Tigers and True Love - You must use boolean logic to choose the correct door that will free your true lovers. Be advised, a wrong door could lead to a hungry, angry tiger!
 n.Nine Stone Puzzle
