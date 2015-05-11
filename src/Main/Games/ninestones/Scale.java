@@ -3,8 +3,6 @@ package Main.Games.ninestones;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -13,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class Scale extends JPanel implements MouseListener {
+public class Scale extends JPanel{
 	
 	private BufferedImage img;
 	private int scaleTipping; // none, left, right
@@ -21,12 +19,15 @@ public class Scale extends JPanel implements MouseListener {
 	public Scale() {
 		setSize(300, 200);
 		setBorder(BorderFactory.createLineBorder(Color.black));
-		addMouseListener(this); // listener for mouse events
 		try {
 			img = ImageIO.read(Interface.class.getResource("./Resources/scale.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addScaleLeft(int weight){
+		
 	}
 	
 	public void clearScale() {
@@ -41,36 +42,6 @@ public class Scale extends JPanel implements MouseListener {
 	// getter
 	int getTipping() {
 		return this.scaleTipping;
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	void draw(Graphics g)
