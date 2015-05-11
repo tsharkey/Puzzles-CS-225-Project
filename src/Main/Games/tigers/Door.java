@@ -1,10 +1,12 @@
 package Main.Games.tigers;
 
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
@@ -34,6 +36,11 @@ public class Door extends JPanel
     private ImageIcon doorImage;
     private ImageIcon tigerImage;
     private ImageIcon loverImage;
+
+    //bufferedImages
+    private BufferedImage doorbuffer;
+    private BufferedImage tigerBuffer;
+    private BufferedImage loveBuffer;
     
     //label for each of the images
     private JLabel label2;
@@ -62,13 +69,20 @@ public class Door extends JPanel
       
       display = d;
       
-       String path = "images/door" + num + ".gif";
-      
+       String path = "/Main/Games/tigers/images/door" + num + ".gif";
+      doorbuffer = null;
+        tigerBuffer = null;
+        loveBuffer = null;
         try {
-            doorImage = new ImageIcon(getClass().getResource(path));
+            doorbuffer = ImageIO.read(getClass().getResourceAsStream(path));
+            doorImage = new ImageIcon(doorbuffer);
+            tigerBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/tigerImage.gif"));
+            tigerImage = new ImageIcon(tigerBuffer);
+            loveBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/loverImage.gif"));
+            loverImage = new ImageIcon(loveBuffer);
         }
         catch (Exception e) {
-            System.out.println("Door image file not found");
+            System.out.println("image file not found");
         }
 
         d1 = new JButton(doorImage);
@@ -125,17 +139,16 @@ public class Door extends JPanel
       public void actionPerformed(ActionEvent evt) {
 
         if(hasLover) {
-          loverImage = new ImageIcon (getClass().getResource("images/loverImage.gif"));
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
           //remove(d1);
           d1.setVisible(false);
           //calls the sound method in Sound Class
-          try {
-             sound.playSound("love");
-          } catch (LineUnavailableException ex) {
-            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-          }
+//          try {
+//             sound.playSound("love");
+//          } catch (LineUnavailableException ex) {
+//            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+//          }
           
           // update score
           if (!doorClicked) {
@@ -145,15 +158,14 @@ public class Door extends JPanel
           revalidate();
           repaint();
         } else {
-          tigerImage = new ImageIcon (getClass().getResource("images/tigerImage.gif"));
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
-          try {
-            sound.playSound("tiger");
-          } catch (LineUnavailableException ex) {
-             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-          }
+//          try {
+//            sound.playSound("tiger");
+//          } catch (LineUnavailableException ex) {
+//             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+//          }
           
           // update score
           if (!doorClicked) {
@@ -177,28 +189,26 @@ public class Door extends JPanel
       Sound sound = new Sound();
       
        if(hasLover) {
-          loverImage = new ImageIcon (getClass().getResource("images/loverImage.gif"));
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
           //calls the sound method in Sound Class
-          try {
-             sound.playSound("love");
-          } catch (LineUnavailableException ex) {
-            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-          }
+//          try {
+//             sound.playSound("love");
+//          } catch (LineUnavailableException ex) {
+//            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+//          }
           revalidate();
           repaint();
         } else {
-          tigerImage = new ImageIcon (getClass().getResource("images/tigerImage.gif"));
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
-          try {
-            sound.playSound("tiger");
-          } catch (LineUnavailableException ex) {
-             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-          }
+//          try {
+//            sound.playSound("tiger");
+//          } catch (LineUnavailableException ex) {
+//             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
+//          }
         revalidate();
         repaint();
         }

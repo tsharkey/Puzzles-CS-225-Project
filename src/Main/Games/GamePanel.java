@@ -51,6 +51,6 @@ public abstract class GamePanel extends JPanel implements KeyListener, ActionLis
     }
 
     public void stopSound(){
-        
+
     }
 }

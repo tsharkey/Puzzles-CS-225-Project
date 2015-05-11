@@ -3,8 +3,12 @@ package Main.Games.tigers;
 import Main.Games.GamePanel;
 import Main.Assets.Constants;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
 import javax.swing.border.EmptyBorder;
 import javax.sound.sampled.LineUnavailableException;
 import java.util.Scanner;
@@ -68,7 +71,7 @@ public class Display extends GamePanel {
     //plays sound effects
     sound = null;
     sound = new Sound();
-    sound.playSound("cave");
+    //sound.playSound("cave");
     
     // display center panel
     createCenter(); 
@@ -83,12 +86,34 @@ public class Display extends GamePanel {
    * @param  fileString  path of file
    */
   public void readFile(String fileString) {
+    File file = null;
+    String resource = "text/tigerText.txt";
+    URL res = getClass().getResource(resource);
+    if (res.toString().startsWith("jar:")) {
+      try {
+        InputStream input = getClass().getResourceAsStream(resource);
+        file = File.createTempFile("tempfile", ".tmp");
+        OutputStream out = new FileOutputStream(file);
+        int read;
+        byte[] bytes = new byte[1024];
+
+        while ((read = input.read(bytes)) != -1) {
+          out.write(bytes, 0, read);
+        }
+        file.deleteOnExit();
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+    }else {
+      //this will probably work in your IDE, but not from a JAR
+      file = new File(res.getFile());
+    }
      //File file = new File(fileString);
      Scanner scanner = null;
      
      //access file
      try {
-       scanner = new Scanner(new File(getClass().getResource(fileString).toURI()));
+       scanner = new Scanner(file);
 
      } catch (Exception e) {
        System.out.println("Text file not found.");
@@ -192,7 +217,7 @@ public class Display extends GamePanel {
     createTitle();
     
     // create south panel
-    ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
+    //ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
     southPanel = new JPanel();
     southPanel.setBackground(Color.black);
     southPanel.setLayout(new BorderLayout());
@@ -378,7 +403,13 @@ public class Display extends GamePanel {
    */
   private void createTitle() {
     //JPanel northPanel = new JPanel();
-     final ImageIcon img4 = new ImageIcon(getClass().getResource("images/prison.png"));
+    BufferedImage img4Buffer = null;
+    try{
+      img4Buffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/prison.png"));
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+     final ImageIcon img4 = new ImageIcon(img4Buffer);
     JPanel northPanel = new JPanel(){ 
        
     protected void paintComponent(Graphics g) {

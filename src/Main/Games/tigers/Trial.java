@@ -1,5 +1,6 @@
 package Main.Games.tigers;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  * The Trial class is responsible for an individual trial in the puzzle.
@@ -25,6 +27,8 @@ public class Trial extends JPanel
   private Jailer jailer;
   private Image img1,img2;
   private int trialNum;
+    private BufferedImage img1Buffer,
+                          img2Buffer;
   
   /**
    * Constructor for objects of type Trial. 
@@ -35,7 +39,18 @@ public class Trial extends JPanel
     trialLabel = new JLabel("Trial No. " + trialNum);
     trialLabel.setForeground(Color.getHSBColor(50, 100, 25));
     trialLabel.setFont(new Font("Sans-serif", Font.BOLD, 12));
-    
+
+      img1Buffer = null;
+      img2Buffer = null;
+
+      try{
+          img1Buffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/prison.png"));
+          img2Buffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/prison.png"));
+
+      }catch(Exception e){
+          e.printStackTrace();
+      }
+
     doorOne = d1;
     doorTwo = d2;
     jailer = j; 
@@ -51,7 +66,7 @@ public class Trial extends JPanel
 
     // add items to center panel
    // JPanel centerPanel = new JPanel();
-    final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
+    final ImageIcon img = new ImageIcon(img1Buffer);
    JPanel centerPanel = new JPanel(){
 
     protected void paintComponent(Graphics g) {
@@ -68,7 +83,7 @@ public class Trial extends JPanel
     
     // add center panel to trial panel
     add(centerPanel, BorderLayout.CENTER);
-       final ImageIcon img3 = new ImageIcon(getClass().getResource("images/prison.png"));
+       final ImageIcon img3 = new ImageIcon(img2Buffer);
 
     JPanel topPanel = new JPanel(new BorderLayout()){ 
        
