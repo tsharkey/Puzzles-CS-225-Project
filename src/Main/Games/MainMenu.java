@@ -163,11 +163,11 @@ public class MainMenu extends GamePanel{
 @Override
         public void actionPerformed(ActionEvent e) {
         //when click on the buttons, will switch to the assigned game
-        if (e.getSource() == gameSections.get(0)) {
+        if (e.getSource() == buttons.get(0)) {
             manager.setGame(2);
-        } else if (e.getSource() == gameSections.get(1)) {
+        } else if (e.getSource() == buttons.get(1)) {
             manager.setGame(3);
-        } else if (e.getSource() == gameSections.get(2)) {
+        } else if (e.getSource() == buttons.get(2)) {
             manager.setGame(4);
         }
 
