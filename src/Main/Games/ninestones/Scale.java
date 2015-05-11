@@ -20,7 +20,8 @@ public class Scale extends JPanel{
 		setSize(300, 200);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		try {
-			img = ImageIO.read(Interface.class.getResource("./Resources/scale.png"));
+//			img = ImageIO.read(Interface.class.getResourceAsStream("./Resources/scale.png"));
+			img = ImageIO.read(getClass().getResourceAsStream("Resources/scale.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
