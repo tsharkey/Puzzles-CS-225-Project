@@ -46,15 +46,11 @@ public abstract class GamePanel extends JPanel implements KeyListener, ActionLis
 
     }
 
-    /**
-     * for future use
-     */
-    void handleInput(){};
+    public void startSound(){
 
-    /*
-    //use this once the game extends threads to pause execution of a game
-    void run(){};
-    void pause(){};
-    void resume(){};
-    */
+    }
+
+    public void stopSound(){
+        
+    }
 }

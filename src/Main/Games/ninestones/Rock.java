@@ -26,7 +26,9 @@ public class Rock extends JPanel {
 		setSize(60, 60);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		try {
-			img = ImageIO.read(Interface.class.getResource("./Resources/rock.png"));
+			//img = ImageIO.read(Interface.class.getResourceAsStream("./Resources/rock.png"));
+			img = ImageIO.read(getClass().getResourceAsStream("Resources/rock.png"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

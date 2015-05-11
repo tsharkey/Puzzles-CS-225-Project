@@ -184,11 +184,6 @@ public class MainMenu extends GamePanel{
     }
 
     @Override
-    void handleInput() {
-
-    }
-
-    @Override
         public void keyPressed(KeyEvent e) {
 
     }
