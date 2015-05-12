@@ -112,6 +112,12 @@ public class Interface extends GamePanel {
 	}
 	
 	private void constructLayoutComponents() {
+		
+		
+		// constructing scale
+		this.scale = new Scale();
+		//scale.setPreferredSize(new Dimension(300, 200));
+		
 		// rock instructions
 		this.rockSelectInfo = new JTextArea();
 		this.rockSelectInfo.setPreferredSize(new Dimension(70,50));
@@ -133,7 +139,8 @@ public class Interface extends GamePanel {
 		this.weightInfo.setWrapStyleWord(true);
 		this.weightInfo.setEditable(false);
 		this.weightInfo.setBackground(Color.GRAY);
-		this.weightInfo.setText("Nothing has been weighed yet!");
+		
+		this.weightInfo.setText(this.scale.getInfo());
 		this.weightInfo.setFont(font);
 		this.weightInfo.setForeground(Color.BLUE);
 		
@@ -163,9 +170,7 @@ public class Interface extends GamePanel {
 		
 		rockSelect.setBackground(Color.GRAY);
 		
-		// constructing scale
-		this.scale = new Scale();
-		scale.setPreferredSize(new Dimension(300, 200));
+
 		
 		//construct scale buttons
 		this.btnAddLeft = new JButton("Add rocks!");
@@ -211,15 +216,10 @@ public class Interface extends GamePanel {
 			if(e.getSource().equals(btnWeigh)){
 				getGameInstance().deductMoney();
 				moneyTotal.setText("MONEY LEFT: " + DecimalFormat.getCurrencyInstance().format(game.getMoney()));
-				if(getGameInstance().weighRocks() == 2){
-					weightInfo.setText("Both sides weigh the same!");
-				}
-				else if(getGameInstance().weighRocks() == 1){
-					weightInfo.setText("The right side weighs more!");
-				}
-				else if(getGameInstance().weighRocks() == 0){
-					weightInfo.setText("The left side weighs more!");
-				}
+				
+				getScaleInstance().updateScale(getGameInstance().weighRocks());
+				weightInfo.setText(getScaleInstance().getInfo());
+				
 				for (int i = 0; i < 9; i++) {
 					rbuttons.get(i).setVisible(true);
 				}
@@ -253,8 +253,9 @@ public class Interface extends GamePanel {
 			                        	Collections.shuffle(rocks);
 			                        	getGameInstance().clearScale();
 			                        	getGameInstance().resetMoney();
+			                        	getScaleInstance().resetScale();
 			                        	moneyTotal.setText("MONEY LEFT: " + DecimalFormat.getCurrencyInstance().format(game.getMoney()));
-			                        	weightInfo.setText("Nothing has been weighed yet!");
+			                        	weightInfo.setText(getScaleInstance().getInfo());
 			                        }
 							}
 							else{
@@ -297,8 +298,9 @@ public class Interface extends GamePanel {
                    	Collections.shuffle(rocks);
                    	getGameInstance().clearScale();
                    	getGameInstance().resetMoney();
+                   	getScaleInstance().resetScale();
                    	moneyTotal.setText("MONEY LEFT: " + DecimalFormat.getCurrencyInstance().format(game.getMoney()));
-                   	weightInfo.setText("Nothing has been weighed yet!");
+                   	weightInfo.setText(getScaleInstance().getInfo());
                    }
 			}
 		}
