@@ -15,7 +15,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -32,7 +31,6 @@ public class Scale extends JPanel {
 	 */
 	public Scale() {
 		setPreferredSize(new Dimension(300, 200));
-		setBorder(BorderFactory.createLineBorder(Color.black));
 
 		this.infoStr = new String[4];
 		this.infoStr[0] = "Both sides weigh the same!";
