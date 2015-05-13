@@ -64,21 +64,17 @@ public class GameLogic {
 	}
 
 	/**
-	 * Set weigh of left side
+	 * Set weigh for left or right side of scale
 	 * 
-	 * @param weightLeft
+	 * @param weight
 	 */
-	void setWeightLeft(int weightLeft) {
-		this.weightLeft += weightLeft;
-	}
-
-	/**
-	 * Set weigh of right side
-	 * 
-	 * @param weightRight
-	 */
-	void setWeightRight(int weightRight) {
-		this.weightRight += weightRight;
+	void setWeight(int weight, boolean isRight) {
+		if(isRight){ // add to right side of scale
+			this.weightRight += weight;
+		}else{ // add to left
+			this.weightLeft += weight;
+		}
+		
 	}
 
 	/**
@@ -101,5 +97,14 @@ public class GameLogic {
 			return 2; // right side greater
 		}
 		return 0; // equal
+	}
+
+	/**
+	 * Check if both scales are empty
+	 * 
+	 * @return
+	 */
+	public boolean scalesEmpty() {
+		return (this.weightLeft == 0) && (this.weightRight == 0);
 	}
 }

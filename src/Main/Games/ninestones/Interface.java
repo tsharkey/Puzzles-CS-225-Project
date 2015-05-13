@@ -251,20 +251,27 @@ public class Interface extends GamePanel {
 		public void actionPerformed(ActionEvent e) {
 			hasWon = true;
 			if (e.getSource().equals(bnWeigh)) {
-				// Handling weighing
-				getGameInstance().deductMoney();
-				tfMoneyTotal.setText("MONEY LEFT: "
-						+ DecimalFormat.getCurrencyInstance().format(
-								game.getMoney()));
+				if (getGameInstance().scalesEmpty()) {
+					getScaleInstance().resetScale();
+					tpWeightInfo
+							.setText("There are no rocks on the scale to weigh!");
+				} else {
+					// Handling weighing
+					getGameInstance().deductMoney();
+					tfMoneyTotal.setText("MONEY LEFT: "
+							+ DecimalFormat.getCurrencyInstance().format(
+									game.getMoney()));
 
-				getScaleInstance().updateScale(getGameInstance().weighRocks());
-				tpWeightInfo.setText(getScaleInstance().getInfo());
+					getScaleInstance().updateScale(
+							getGameInstance().weighRocks());
+					tpWeightInfo.setText(getScaleInstance().getInfo());
 
-				for (int i = 0; i < 9; i++) {
-					rbuttons.get(i).setVisible(true);
-					rLetters.get(i).setText("");
+					for (int i = 0; i < 9; i++) {
+						rbuttons.get(i).setVisible(true);
+						rLetters.get(i).setText("");
+					}
+					getGameInstance().clearScale();
 				}
-				getGameInstance().clearScale();
 			} else if (e.getSource().equals(bnBuy)) {
 				// Handle buying
 				int z = 0;
@@ -306,14 +313,15 @@ public class Interface extends GamePanel {
 			} else if (e.getSource().equals(bnAddLeft)
 					|| e.getSource().equals(bnAddRight)) {
 				// adding rock/gem to left/right side of scale
-				String display = e.getSource().equals(bnAddRight) ? "R" : "L";
+				boolean isRight = e.getSource().equals(bnAddRight);
+				String display = isRight ? "R" : "L";
 				for (int i = 0; i < 9; i++) {
 					if (rbuttons.get(i).isSelected()) {
 						rbuttons.get(i).setSelected(false);
 						rbuttons.get(i).setVisible(false);
 						rLetters.get(i).setText(display);
-						getGameInstance().setWeightLeft(
-								rocks.get(i).getWeight());
+						getGameInstance().setWeight(rocks.get(i).getWeight(),
+								isRight);
 					}
 				}
 			} else if (e.getSource().equals(bnClear)) {
