@@ -300,8 +300,7 @@ public class Interface extends GamePanel {
 										JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 									resetGame();
 								} else {
-									// TODO: exit back to game selection menu
-									System.exit(0);
+									Main.Main.staticGameManager.setGame(1); // MAIN MENU
 								}
 							} else {
 								tpWeightInfo
@@ -340,8 +339,7 @@ public class Interface extends GamePanel {
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					resetGame();
 				} else {
-					// TODO: exit back to game selection menu
-					System.exit(0);
+					Main.Main.staticGameManager.setGame(1); // MAIN MENU
 				}
 			}
 		}
