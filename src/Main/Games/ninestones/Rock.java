@@ -39,7 +39,7 @@ public class Rock extends JPanel {
 	 * Default constructor
 	 */
 	public Rock() {
-		this.background = Color.BLUE;
+		this.background = Color.GRAY;
 		setPreferredSize(new Dimension(60, 60));
 		try {
 			img = ImageIO.read(getClass().getResourceAsStream(
