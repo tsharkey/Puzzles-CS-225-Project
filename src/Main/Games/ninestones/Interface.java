@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -35,7 +34,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
-
 import Main.Games.GamePanel;
 
 @SuppressWarnings("serial")
@@ -49,22 +47,16 @@ public class Interface extends GamePanel {
 	private JTextArea tfRockSelectInfo, tfMoneyTotal, tfGameInfo;
 	private JButton bnWeigh, bnBuy, bnClear, bnAddLeft, bnAddRight;
 	private Color bkgColor = Color.GRAY;
-	
 	private JTextPane tpWeightInfo;
-	
-	
-	
-	private JPanel pInfoPanel1, pRockSelect, pTop, pScale;
-	
-	private JPanel  buttonPanel, leftScalebtnPanel, rightScalebtnPanel;
-	
 	private ArrayList<JRadioButton> rbuttons;
 	private ArrayList<JTextPane> rLetters;
+	// UI components
+	private JPanel pInfoPanel1, pRockSelect, pTop, pScale;
+	private JPanel  buttonPanel, leftScalebtnPanel, rightScalebtnPanel;
 	
 	/**
 	 * Default constructor
 	 */
-	
 	public Interface() {
 		// initializing game variables
 		this.game = new GameLogic();
@@ -84,170 +76,98 @@ public class Interface extends GamePanel {
 		// initializing GUI components
 		constructLayoutComponents();
 		
-		// constructing layout and adding to frame
-		this.setBackground(Color.GRAY);
-		this.setPreferredSize(new Dimension(Main.Assets.Constants.SCREEN_WIDTH, Main.Assets.Constants.SCREEN_HEIGHT));
-		this.setVisible(true);
-		this.setLayout(new BorderLayout());
-		
 		// construct scale panel
-		pScale.add(this.scale, BorderLayout.NORTH);
-		pScale.add(this.tpWeightInfo, BorderLayout.CENTER);
-		pScale.setBackground(bkgColor);
+		this.pScale = new JPanel(new BorderLayout());
+		this.pScale.add(this.scale, BorderLayout.NORTH);
+		this.pScale.add(this.tpWeightInfo, BorderLayout.CENTER);
+		this.pScale.setBackground(bkgColor);
 		JPanel scaleButton = new JPanel(new BorderLayout());
 		scaleButton.add(bnAddLeft, BorderLayout.WEST);
 		scaleButton.add(bnAddRight, BorderLayout.EAST);
 		scaleButton.setBackground(bkgColor);
-		pScale.add(scaleButton, BorderLayout.SOUTH);
+		this.pScale.add(scaleButton, BorderLayout.SOUTH);
 		JPanel midPanel = new JPanel(new BorderLayout());
 		midPanel.add(buttonPanel, BorderLayout.WEST);
 		midPanel.add(pScale, BorderLayout.CENTER);
 		midPanel.setBackground(bkgColor);
 		
-		//money and info
+		// money and info
 		JPanel moneyInfo = new JPanel(new GridLayout(2,0));
 		moneyInfo.add(tfRockSelectInfo);
 		moneyInfo.add(tfMoneyTotal);
 		moneyInfo.setAlignmentY(BOTTOM_ALIGNMENT);
 		
-		//construct rock panel
-		//pRockSelect
+		// construct rock panel
 		pTop = new JPanel(new FlowLayout());
 		pTop.add(moneyInfo);
 		pTop.add(pRockSelect);
 		pTop.setBackground(bkgColor);
 		
-		
-		// add scale to frame
-		//GridBagConstraints c = new GridBagConstraints();
-		//c.gridy = 1;
-		//c = new GridBagConstraints();
+		// configuring frame
+		this.setBackground(Color.GRAY);
+		this.setPreferredSize(new Dimension(Main.Assets.Constants.SCREEN_WIDTH, Main.Assets.Constants.SCREEN_HEIGHT));
+		this.setVisible(true);
+		this.setLayout(new BorderLayout());
+		// adding components to frame
 		this.add(midPanel, BorderLayout.CENTER);
-		
-		//rocks
-		//c.gridy = 0;
 		this.add(pTop, BorderLayout.NORTH);
-		
-		//money
-		//c.gridy = 3;
 		this.add(pInfoPanel1, BorderLayout.SOUTH);
-		
-		/*
-	    c.weightx = 1;
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.gridx = 0;
-	    c.gridy = 0;
-	    this.add(this.tfRockSelectInfo, c);
-	 
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.weightx = 0.5;
-	    c.gridx = 2;
-	    c.gridy = 0;
-	    this.add(this.rockSelect, c);
-	    */
-
-	    /*
-	    //scale wight info
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.weightx = 0.0;
-	    c.gridwidth = 1;
-	    c.gridx = 2;
-	    c.gridy = 2;
-	    this.add(tfWeightInfo, c);
-	    
-	    //scale left
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.weightx = 0.0;
-	    c.gridwidth = 1;
-	    c.gridx = 1;
-	    c.gridy = 2;
-	    this.add(leftScalebtnPanel, c);
-	    //scale right
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.weightx = 0.0;
-	    c.gridwidth = 1;
-	    c.gridx = 3;
-	    c.gridy = 2;
-	    this.add(rightScalebtnPanel, c);
-	    
-	    c.fill = GridBagConstraints.HORIZONTAL;
-	    c.anchor = GridBagConstraints.NORTH;
-	    c.weightx = 0.0;
-	    c.gridwidth = 1;
-	    c.gridx = 0;
-	    c.gridy = 1;
-	    this.add(this.tfMoneyTotal, c);
-	    
-	    c.fill = GridBagConstraints.NONE;
-	    c.anchor = GridBagConstraints.CENTER;
-	    c.weightx = 0.0;
-	    c.gridwidth = 1;
-	    c.gridx = 0;
-	    c.gridy = 1;
-	    this.add(this.buttonPanel, c);
-		*/
-	    //
-	    
 	}
 	
+	/**
+	 * Construct individual interface variables used by GUI
+	 * 
+	 */
 	private void constructLayoutComponents() {
-		this.pScale = new JPanel(new BorderLayout());
-		
-		this.pRockSelect = new JPanel(new GridLayout(3,9));
-		
-		this.pInfoPanel1 = new JPanel();
-		
+		// Brief description of game at bottom of window
 		this.tfGameInfo = new JTextArea();
 		this.tfGameInfo.setText("With 18 dollars you can buy just two measurements with 9 dollars left over to buy one of the nine stones. What measurements "
 									+ "can you make to identify the valuable gem with absolute certainty?");
 		this.tfGameInfo.setLineWrap(true);
 		this.tfGameInfo.setWrapStyleWord(true);
 		this.tfGameInfo.setEditable(false);
-		this.tfGameInfo.setBackground(Color.GRAY);
-		this.tfGameInfo.setForeground(Color.BLUE);
+		this.tfGameInfo.setBackground(Color.RED);
+		this.tfGameInfo.setForeground(Color.BLACK);
 		Border b = BorderFactory.createLineBorder(Color.BLACK);
 		this.tfGameInfo.setBorder(b);
 		Font font3 = new Font("Verdana", Font.BOLD, 12);
 		this.tfGameInfo.setFont(font3);
 		this.tfGameInfo.setPreferredSize(new Dimension(700,35));
-		
+		// Adding game description to bottom info panel
+		this.pInfoPanel1 = new JPanel();
 		this.pInfoPanel1.add(tfGameInfo);
 		this.pInfoPanel1.setBackground(bkgColor);
 		
-		// constructing scale
-		
-		//scale.setPreferredSize(new Dimension(300, 200));
-		
-		// rock instructions
+		// Brief description at top left regarding rock selection
 		this.tfRockSelectInfo = new JTextArea();
 		this.tfRockSelectInfo.setPreferredSize(new Dimension(150,150));
 		this.tfRockSelectInfo.setLineWrap(true);
 		this.tfRockSelectInfo.setWrapStyleWord(true);
 		this.tfRockSelectInfo.setEditable(false);
-		this.tfRockSelectInfo.setBackground(Color.GRAY);
+		this.tfRockSelectInfo.setBackground(Color.RED);
+		this.tfRockSelectInfo.setForeground(Color.BLACK);
 		this.tfRockSelectInfo.setText("Select stones then add them to either side of the scale.\n"
 						+"Hit weigh to find out which side is heavier.\n"
 							+"Try to find the heaviest rock and buy it.");
 		Font font = new Font("Verdana", Font.BOLD, 12);
 		this.tfRockSelectInfo.setFont(font);
 		this.tfRockSelectInfo.setBorder(b);
-		this.tfRockSelectInfo.setForeground(Color.BLUE);
 		
-		// weight display
+		// Weight display text pane
 		tpWeightInfo = new JTextPane();
 		SimpleAttributeSet attribs = new SimpleAttributeSet();
 		StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_CENTER);
 		StyleConstants.setBold(attribs, true);
 		tpWeightInfo.setParagraphAttributes(attribs,true);
 		tpWeightInfo.setText(this.scale.getInfo());
-		//tpWeightInfo.setFont(font);
 		tpWeightInfo.setBackground(Color.RED);
 		
-		
+		// Creating rock radio buttons and scale location panel under it
 		rbuttons = new ArrayList<JRadioButton>();
 		rLetters = new ArrayList<JTextPane>();
 		
 		// adding to panel
+		this.pRockSelect = new JPanel(new GridLayout(3,9));
 		this.pRockSelect.setPreferredSize(new Dimension(600, 200));
 		for (int i = 0; i < 9; i++) {
 			pRockSelect.add(rocks.get(i));
@@ -259,6 +179,7 @@ public class Interface extends GamePanel {
 			pRockSelect.add(rbuttons.get(i));
 		}
 		
+		// setting up display of rocks current location
 		SimpleAttributeSet attribs2 = new SimpleAttributeSet();
 		StyleConstants.setAlignment(attribs2 , StyleConstants.ALIGN_CENTER);
 		StyleConstants.setBold(attribs2, true);
@@ -275,21 +196,17 @@ public class Interface extends GamePanel {
 		
 		pRockSelect.setBackground(Color.GRAY);
 		
-
-		
-		//construct scale buttons
+		// construct scale buttons
 		this.bnAddLeft = new JButton("Add rocks!");
 		this.bnAddLeft.addActionListener(new Interface.ButtonListener());
 		this.leftScalebtnPanel = new JPanel();
 		this.leftScalebtnPanel.add(bnAddLeft);
-		
 		this.bnAddRight = new JButton("Add rocks!");
 		this.bnAddRight.addActionListener(new Interface.ButtonListener());
 		this.rightScalebtnPanel = new JPanel();
 		this.rightScalebtnPanel.add(bnAddRight);
 		
 		// money instructions
-		
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		Font boldUnderline = new Font("Serif",Font.BOLD, 14).deriveFont(fontAttributes);
@@ -304,8 +221,7 @@ public class Interface extends GamePanel {
 		this.tfMoneyTotal.setFont(boldUnderline);
 		this.tfMoneyTotal.setForeground(Color.GREEN);
 		
-		
-		// button panel
+		// button panel set up
 		this.buttonPanel = new JPanel();
 		this.buttonPanel.setLayout(new GridLayout(0,1));
 		bnClear = new JButton("Clear Scale!");
@@ -321,10 +237,15 @@ public class Interface extends GamePanel {
 		this.buttonPanel.setBackground(Color.GRAY);
 	}
 	
+	/**
+	 * Button listeners to connect into game logic and playing the game
+	 * 
+	 */
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			hasWon = true;
 			if(e.getSource().equals(bnWeigh)){
+				// Handling weighing
 				getGameInstance().deductMoney();
 				tfMoneyTotal.setText("MONEY LEFT: " + DecimalFormat.getCurrencyInstance().format(game.getMoney()));
 				
@@ -337,6 +258,7 @@ public class Interface extends GamePanel {
 				}
 				getGameInstance().clearScale();
 			}else if(e.getSource().equals(bnBuy)){
+				// Handle buying
 				int z = 0;
 				for (int i = 0; i < 9; i++){
 					if(rbuttons.get(i).isSelected()){
@@ -380,6 +302,7 @@ public class Interface extends GamePanel {
 				}
 				}
 			}else if(e.getSource().equals(bnAddLeft)){
+				// adding rock/gem to left side of scale
 				for (int i = 0; i < 9; i++) {
 					if(rbuttons.get(i).isSelected()){
 						rbuttons.get(i).setSelected(false);
@@ -389,6 +312,7 @@ public class Interface extends GamePanel {
 					}
 				}
 			}else if(e.getSource().equals(bnAddRight)){
+				// adding rock/gem to right side of scale
 				for (int i = 0; i < 9; i++) {
 					if(rbuttons.get(i).isSelected()){
 						rbuttons.get(i).setSelected(false);
@@ -398,12 +322,14 @@ public class Interface extends GamePanel {
 					}
 				}
 			}else if(e.getSource().equals(bnClear)){
+				// clearing scale
 				for (int i = 0; i < 9; i++) {
 					rbuttons.get(i).setVisible(true);
 					rLetters.get(i).setText("");
 				}
 				getGameInstance().clearScale();
 			}
+			// checking if game is over (loss)
 			if(getGameInstance().getMoney() == 0 && hasWon){
 				System.out.println("You lost!");
 				 String str = "You lost!\nWould you like to play again?";
@@ -422,12 +348,28 @@ public class Interface extends GamePanel {
                    	tpWeightInfo.setText(getScaleInstance().getInfo());
                    }
                    else{
+                	   // TODO: Framework needs some way to dispose
                 	   System.exit(0);
                    }
 			}
 		}
 	}
+	
+	/**
+	 * Getter for game instance
+	 * @return
+	 */
+	GameLogic getGameInstance() { return this.game; }
+	
+	/**
+	 * Getter for scale instance
+	 * @return
+	 */
+	Scale getScaleInstance() { return this.scale; }
 
+	/**
+	 * Override place holders for GamePanel
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
@@ -439,7 +381,4 @@ public class Interface extends GamePanel {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {}
-	
-	GameLogic getGameInstance() { return this.game; }
-	Scale getScaleInstance() { return this.scale; }
 }
