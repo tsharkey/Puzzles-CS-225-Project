@@ -22,7 +22,7 @@ public class Scale extends JPanel {
 	private BufferedImage[] images;
 	private BufferedImage currentImage;
 	private int scaleStatus; // none, left, right
-	private Color background = Color.BLUE;
+	private Color background = Color.GRAY;
 	private String currentInfo;
 	private String[] infoStr;
 
