@@ -65,7 +65,6 @@ public class Trial extends JPanel
   public void addComponents() {
 
     // add items to center panel
-   // JPanel centerPanel = new JPanel();
     final ImageIcon img = new ImageIcon(img1Buffer);
    JPanel centerPanel = new JPanel(){
 

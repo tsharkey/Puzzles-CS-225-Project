@@ -69,62 +69,61 @@ public class Door extends JPanel
       
       display = d;
       
+       // 
        String path = "/Main/Games/tigers/images/door" + num + ".gif";
-      doorbuffer = null;
-        tigerBuffer = null;
-        loveBuffer = null;
-        try {
-            doorbuffer = ImageIO.read(getClass().getResourceAsStream(path));
-            doorImage = new ImageIcon(doorbuffer);
-            tigerBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/tigerImage.gif"));
-            tigerImage = new ImageIcon(tigerBuffer);
-            loveBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/loverImage.gif"));
-            loverImage = new ImageIcon(loveBuffer);
-        }
-        catch (Exception e) {
-            System.out.println("image file not found");
-        }
+       doorbuffer = null;
+       tigerBuffer = null;
+       loveBuffer = null;
+       try {
+           doorbuffer = ImageIO.read(getClass().getResourceAsStream(path));
+           doorImage = new ImageIcon(doorbuffer);
+           tigerBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/tigerImage.gif"));
+           tigerImage = new ImageIcon(tigerBuffer);
+           loveBuffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/loverImage.gif"));
+           loverImage = new ImageIcon(loveBuffer);
+       }
+       catch (Exception e) {
+           System.out.println("Image file not found");
+       }
 
-        d1 = new JButton(doorImage);
-        
-        d1.setOpaque(false);
-        d1.setContentAreaFilled(false);
-        d1.setBorderPainted(false);
-        d1.setFocusPainted(false);
+       // door button specs
+       d1 = new JButton(doorImage);
+       d1.setOpaque(false);
+       d1.setContentAreaFilled(false);
+       d1.setBorderPainted(false);
+       d1.setFocusPainted(false);
 
-        doorLabel = new JLabel("");
-        doorLabel.setOpaque(false);
-        doorLabel.setForeground(Color.getHSBColor(50, 100,25));
+       doorLabel = new JLabel("");
+       doorLabel.setOpaque(false);
+       doorLabel.setForeground(Color.getHSBColor(50, 100,25));
 
-        txtArea = new JTextArea();
-        txtArea.setFont(new Font("Sans-Serif", Font.BOLD, 10));
-        txtArea.setEditable(false);
-        txtArea.setOpaque(false);
-        txtArea.setBackground(Color.black);
-        txtArea.setForeground(Color.getHSBColor(50, 100,25));
-        txtArea.setBounds(10, 10, 50, 110);
-        txtArea.setWrapStyleWord(true);
-        txtArea.setLineWrap(true);
-        txtArea.setSize(30, 100);
+       // text area specs
+       txtArea = new JTextArea();
+       txtArea.setFont(new Font("Sans-Serif", Font.BOLD, 10));
+       txtArea.setEditable(false);
+       txtArea.setOpaque(false);
+       txtArea.setBackground(Color.black);
+       txtArea.setForeground(Color.getHSBColor(50, 100,25));
+       txtArea.setBounds(10, 10, 50, 110);
+       txtArea.setWrapStyleWord(true);
+       txtArea.setLineWrap(true);
+       txtArea.setSize(30, 100);
         
-        // add bottom panel
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setOpaque(false);
-        bottomPanel.add(doorLabel);
-        bottomPanel.add(txtArea);
+       // add bottom panel
+       JPanel bottomPanel = new JPanel();
+       bottomPanel.setOpaque(false);
+       bottomPanel.add(doorLabel);
+       bottomPanel.add(txtArea);
+       
+       // set Layout and arrange components and transparency of panel
+       setLayout(new BorderLayout());
+       setOpaque(false);
         
-
-        // set Layout and arrange components and transparency of panel
-        setLayout(new BorderLayout());
-        setOpaque(false);
-        
-        //add(topPanel, BorderLayout.NORTH);
-        add(d1, BorderLayout.NORTH);
-        d1.addActionListener(new doorButton());
-        
-        //add(doorLabel, BorderLayout.CENTER);
-        add(bottomPanel, BorderLayout.SOUTH);
-        setBackground(Color.black);
+       // add components to layout
+       add(d1, BorderLayout.NORTH);
+       d1.addActionListener(new doorButton());
+       add(bottomPanel, BorderLayout.SOUTH);
+       setBackground(Color.black);
     }
 
     /**

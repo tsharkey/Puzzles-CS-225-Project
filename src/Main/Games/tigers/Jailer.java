@@ -36,6 +36,7 @@ public class Jailer extends JPanel{
       startArea = new JTextArea("");
       trialArea = new JTextArea(""); 
         
+      // start area specs
       startArea.setFont(new Font("Sans-Serif", Font.PLAIN, 11));
       startArea.setForeground(Color.getHSBColor(50, 100,25));
       startArea.setOpaque(false);
@@ -45,6 +46,7 @@ public class Jailer extends JPanel{
       startArea.setLineWrap(true);
       startArea.setSize(300, 300); 
       
+      // trial area specs
       trialArea.setFont(new Font("Sans-Serif", Font.BOLD, 12));
       trialArea.setOpaque(false);
       trialArea.setForeground(Color.getHSBColor(50, 100,25));
