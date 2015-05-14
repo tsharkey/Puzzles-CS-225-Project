@@ -151,8 +151,8 @@ public class Interface extends GamePanel {
 		this.tfRockSelectInfo.setForeground(Color.BLACK);
 		this.tfRockSelectInfo
 				.setText("Select stones then add them to either side of the scale.\n"
-						+ "Hit weigh to find out which side is heavier.\n"
-						+ "Try to find the heaviest rock and buy it.");
+						+ "Hit the weigh button to find out which side is heavier.\n"
+						+ "Try to find the heaviest stone and buy it to win.");
 		Font font = new Font("Verdana", Font.BOLD, 12);
 		this.tfRockSelectInfo.setFont(font);
 		this.tfRockSelectInfo.setBorder(b);
@@ -201,11 +201,11 @@ public class Interface extends GamePanel {
 		pRockSelect.setBackground(Color.GRAY);
 
 		// construct scale buttons
-		this.bnAddLeft = new JButton("Add rocks!");
+		this.bnAddLeft = new JButton("Add stones!");
 		this.bnAddLeft.addActionListener(new Interface.ButtonListener());
 		this.leftScalebtnPanel = new JPanel();
 		this.leftScalebtnPanel.add(bnAddLeft);
-		this.bnAddRight = new JButton("Add rocks!");
+		this.bnAddRight = new JButton("Add stones!");
 		this.bnAddRight.addActionListener(new Interface.ButtonListener());
 		this.rightScalebtnPanel = new JPanel();
 		this.rightScalebtnPanel.add(bnAddRight);
@@ -236,7 +236,7 @@ public class Interface extends GamePanel {
 		bnWeigh = new JButton("$9 WEIGH");
 		bnWeigh.addActionListener(new Interface.ButtonListener());
 		this.buttonPanel.add(bnWeigh);
-		bnBuy = new JButton("$9 PURCHASE");
+		bnBuy = new JButton("$9 BUY");
 		bnBuy.addActionListener(new Interface.ButtonListener());
 		this.buttonPanel.add(bnBuy);
 		this.buttonPanel.setPreferredSize(new Dimension(125, 100));
@@ -254,7 +254,7 @@ public class Interface extends GamePanel {
 				if (getGameInstance().scalesEmpty()) {
 					getScaleInstance().resetScale();
 					tpWeightInfo
-							.setText("There are no rocks on the scale to weigh!");
+							.setText("There are no stones on the scale to weigh!");
 				} else {
 					// Handling weighing
 					getGameInstance().deductMoney();
@@ -282,7 +282,7 @@ public class Interface extends GamePanel {
 				}
 				if (z != 1) {
 					tpWeightInfo
-							.setText("Select exactly one rock for purchase!");
+							.setText("Select exactly one stone for purchase!");
 				} else if (z == 1) {
 					getGameInstance().deductMoney();
 					tfMoneyTotal.setText("MONEY LEFT: "
@@ -293,7 +293,6 @@ public class Interface extends GamePanel {
 							if (rocks.get(i).getWeight() == 55) { // gem
 								hasWon = false;
 								rbuttons.get(i).setSelected(false);
-								System.out.println("You won!");
 								String str = "You won!\nWould you like to play again?";
 								if (JOptionPane.showConfirmDialog(null, str,
 										"GAME RESULT",
@@ -304,7 +303,7 @@ public class Interface extends GamePanel {
 								}
 							} else {
 								tpWeightInfo
-										.setText("You bought the wrong rock!");
+										.setText("You bought the wrong stone!");
 							}
 						}
 					}
@@ -323,17 +322,23 @@ public class Interface extends GamePanel {
 								isRight);
 					}
 				}
+				tpWeightInfo.setText("");
 			} else if (e.getSource().equals(bnClear)) {
 				// clearing scale
-				for (int i = 0; i < 9; i++) {
-					rbuttons.get(i).setVisible(true);
-					rLetters.get(i).setText("");
+				if (getGameInstance().scalesEmpty()) {
+					getScaleInstance().resetScale();
+					tpWeightInfo
+							.setText("There are no stones on the scale to clear!");
+				} else {
+					for (int i = 0; i < 9; i++) {
+						rbuttons.get(i).setVisible(true);
+						rLetters.get(i).setText("");
+					}
+					getGameInstance().clearScale();
 				}
-				getGameInstance().clearScale();
 			}
 			// checking if game is over (loss)
 			if (getGameInstance().getMoney() == 0 && hasWon) {
-				System.out.println("You lost!");
 				String str = "You lost!\nWould you like to play again?";
 				if (JOptionPane.showConfirmDialog(null, str, "GAME RESULT",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
