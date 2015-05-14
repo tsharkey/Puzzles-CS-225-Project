@@ -3,7 +3,8 @@
 //all text to be display begin with n and .
 i.miner.png
 i.tigers.png
-i.placeholder.png
+i.ninestones.png
 n.Miners and Minutes - 4 miners have been trapped in a cavern and collapse in 15 minutes. There is an open tunnel leading to safety. And it requires a latern to travel. The miners only have one working lantern to use. Only 2 miners can travel the tunnel at a time with the latern. There is an open tunnel leading to safety. How can all the miners get out safely?
 n.Tigers and True Love - You must use boolean logic to choose the correct door that will free your true lovers. Be advised, a wrong door could lead to a hungry, angry tiger!
-n.Nine Stone Puzzle
+n.Nine Stone Puzzle - A Visionary tells you that a certain shopkeeper has nine stones which look absolutely identical but that one stone is actually an extremely valuable gem while the other eight are worthless baubles. The worthless eight are exactly the same. But the valuable gem is just slightly (and imperceptibly) heavier. Each stone costs nine dollars but you only have 27 dollars.
+                      The shopkeeper will also allow you to use a very precise equal-arm balance but each measurement costs nine dollars. This equal-arm balance only tells you that one side of the balance is heavier than the other. One can put any number of objects on either side of the balance.

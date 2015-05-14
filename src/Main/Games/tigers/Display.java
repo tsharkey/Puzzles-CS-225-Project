@@ -217,7 +217,6 @@ public class Display extends GamePanel {
     createTitle();
     
     // create south panel
-    //ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
     southPanel = new JPanel();
     southPanel.setBackground(Color.black);
     southPanel.setLayout(new BorderLayout());
@@ -244,10 +243,18 @@ public class Display extends GamePanel {
     centerPanel.add(trials.get(currentIndex), BorderLayout.CENTER);
     
     // create components for bottom half of center panel
+    
+    // total trials markers
+    JLabel totalLabel = new JLabel("Total trials: " + trialNum);
+    totalLabel.setForeground(Color.getHSBColor(50, 100, 25));
+    totalLabel.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+    
+    // results text
     resultsText = new JLabel("Will you choose right?");
-    resultsText.setForeground(Color.getHSBColor(50, 100,25));
+    resultsText.setForeground(Color.getHSBColor(50, 100, 25));
     resultsText.setFont(new Font("Sans-Serif", Font.BOLD, 12));
    
+    // score label
     scoreLabel = new JLabel("Correct: 0/" + loverNum);
     scoreLabel.setFont(new Font("Sans-Serif", Font.BOLD, 10));
     scoreLabel.setForeground(Color.green );
@@ -273,6 +280,7 @@ public class Display extends GamePanel {
     // set center lower panel
     centerLower = new JPanel();
     centerLower.setBackground(Color.darkGray);
+    centerLower.add(totalLabel);
     centerLower.add(refuseButton);
     centerLower.add(resultsText);
     centerLower.add(scoreLabel);
@@ -287,17 +295,9 @@ public class Display extends GamePanel {
    */
   private void createButtons() {
     // buttons in own panel in south
-    
-  //  final ImageIcon img = new ImageIcon(getClass().getResource("images/prison.png"));
-    JPanel btnPanel = new JPanel();//{
+    JPanel btnPanel = new JPanel();
     btnPanel.setBackground(Color.black);
        
-    //       protected void paintComponent(Graphics g) {
-     //       super.paintComponent(g);
-      //      img1 = img.getImage();
-      //      g.drawImage(img1, 0,0, null); 
-      //     }
-      //  };
     btnPanel.setLayout(new FlowLayout()); 
     JButton nextButton = new JButton("Next Trial");
     
@@ -460,7 +460,9 @@ public class Display extends GamePanel {
       }       
    }
   }
-
+    /**
+     * All below necessary because extends GamePanel.
+     */
     @Override
     public void actionPerformed(ActionEvent e){
 
