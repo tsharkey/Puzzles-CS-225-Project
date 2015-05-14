@@ -1,5 +1,5 @@
 DSTART
-Based on the statements below each door and the statements of the jailer (who may or may not be lying), you must choose the door(s) you believe has a lover behind it. Click on the doors to open them or click on the "I choose Neither!" button to choose neither. You will receive a point for every lover found. You must find every lover behind a door during each trial to escape! 
+Based on the statements below each door and the statements of the jailer (who may or may not be lying), you must choose the door(s) you believe has a lover behind it. Click on the doors to open them or click on the "I choose Neither!" button to choose neither. You will receive a point for every lover found. You must find every lover (note: there may be lovers behind both doors) behind a door during each trial to escape!
 DEND
 
 JSTART
