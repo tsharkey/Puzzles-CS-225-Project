@@ -24,6 +24,7 @@ public class MinerMainPanel extends GamePanel {
     // Sets the constructor for the Miner Main Panel for the puzzle
     public MinerMainPanel() 
     {    
+        super(Main.Main.staticGameManager);
         Miner.LaternInSafeZone = false;
         Miner.orignalTime = 15;
         MinerGUI.number_ready_to_go = 0;
@@ -38,10 +39,10 @@ public class MinerMainPanel extends GamePanel {
 
         minerGamePanel = new MinerGamePanel();
         instruction = new JTextArea();
-        instruction.setPreferredSize(new Dimension(800,350));
+        instruction.setPreferredSize(new Dimension(800,245));
        
         instruction.setWrapStyleWord(true);
-        instruction.setFont(new Font("Serif", Font.ITALIC, 18));
+        instruction.setFont(new Font("Serif", Font.ITALIC, 14));
         instruction.setForeground(new Color(28, 94, 161));
         instruction.setEditable(false);
         this.addText();
@@ -79,15 +80,15 @@ public class MinerMainPanel extends GamePanel {
      */
     public void addText()
     {
-        instruction.append("INSTRUCTIONS: \n \n");
-        instruction.append("Frist select the Miners, then"+ '\n');
-        instruction.append("1) Click on MOVE button to move from cave to safety" + '\n');
-        instruction.append("2) Click on UNDO button to move to the previous state" + '\n');
-        instruction.append("3) Click on RESET button to allow to restart the puzzle" + '\n');
-        instruction.append("4) Click on CLOSE button to exit the puzzle" + '\n'); 
+        instruction.append("INSTRUCTIONS: \n");
+        instruction.append("First, click on the Miners to move them to or remove them from ready-to-move area, then"+ '\n');
+        instruction.append("1) Click on MOVE button to move from cave to safety or vice versa." + '\n');
+        instruction.append("2) Click on UNDO button to move to the previous state." + '\n');
+        instruction.append("3) Click on RESET button to allow to restart the puzzle." + '\n');
+        instruction.append("4) Click on CLOSE button to exit the puzzle." + '\n'); 
         instruction.append("" + '\n');
        // instruction.append("" + '\n');
-        instruction.append("GAME INFORMATION: \n \n");
+        instruction.append("GAME INFORMATION: \n");
         instruction.append("Four Miners are: " + '\n');
         instruction.append(" a. Onika: uninjured and can walk in one minute" + '\n');
         instruction.append(" b. Twitch has a limp and can walk in two minutes" + '\n');

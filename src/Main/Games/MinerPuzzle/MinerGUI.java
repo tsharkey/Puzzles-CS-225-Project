@@ -113,18 +113,20 @@ public class MinerGUI extends JPanel implements MouseListener {
         for (int i = 0; i < miners.length; i++) {
             //when clicking on the person, and the latern is not in use
             if ((e.getButton() == 1) && circles[i].contains(e.getX(), e.getY()) && !laternIsUsed) {
-                //when the latern is not at the same side as the person clicked on
+                //when the latern is not at the same side as the miner, who is clicked on
                 if (miners[i].isSafe != Miner.LaternInSafeZone) {
                     new Thread() {
                         @Override
                         public void run() {
+                            MinerGamePanel.message.setForeground(Color.red);
                             MinerGamePanel.message.setText("I do not have the latern.");
                             try {
                                 Thread.sleep(2000);
                             } catch (InterruptedException ex) {
                                 Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            MinerGamePanel.message.setText("");
+                            MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
+                            MinerGamePanel.message.setText("No message!");
 
                         }
                     }.start();
@@ -149,17 +151,19 @@ public class MinerGUI extends JPanel implements MouseListener {
                             }
                         }
                     } 
-                    else {//when there are 2 people at ready-to-move area already
+                    else {//when the player try to get more than 2 miners moving at a time
                         new Thread() {
                             @Override
                             public void run() {
+                                MinerGamePanel.message.setForeground(Color.red);
                                 MinerGamePanel.message.setText("Too many people ready to go.");
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                MinerGamePanel.message.setText("");
+                                MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
+                                MinerGamePanel.message.setText("No message!");
 
                             }
                         }.start();
@@ -180,17 +184,19 @@ public class MinerGUI extends JPanel implements MouseListener {
                                 time = miners[i].getTime();
                             }
                         }
-                    } else {
+                    } else {//when user try to get more than 2 miners moving at a time
                         new Thread() {
                             @Override
                             public void run() {
+                                MinerGamePanel.message.setForeground(Color.red);
                                 MinerGamePanel.message.setText("Too many people ready to go.");
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                MinerGamePanel.message.setText("");
+                                MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
+                                MinerGamePanel.message.setText("No message!");
 
                             }
                         }.start();

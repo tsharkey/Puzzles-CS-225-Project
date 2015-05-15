@@ -1,6 +1,5 @@
 package Main.Games.MinerPuzzle;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- *  Creates the Miner Game Panel which creates the buttons and adds to the panel
+ * Creates the Miner Game Panel which creates the buttons and adds to the panel
  *
  * @author vietdinh
  */
@@ -18,6 +17,7 @@ public class MinerGamePanel extends GridBagPanel implements ActionListener {
 
     // instane variable
     private MinerGUI minerGUI;
+    private JOptionPane option;
     // static variables
     public static JLabel time;// show time left for all people to excape to safe place
     public static JButton move, undo, close, reset;
@@ -25,9 +25,12 @@ public class MinerGamePanel extends GridBagPanel implements ActionListener {
 
     //Sets the constructor for the Game Panel
     public MinerGamePanel() {
-        
-        message.setForeground(Color.red);
+
+        message.setForeground(Color.LIGHT_GRAY);
         message.setFont(new Font("Serif", Font.BOLD, 20));
+        message.setOpaque(true);
+        message.setBackground(Color.LIGHT_GRAY);
+        message.setText("No message!");
 
         time = new JLabel();
         time.setForeground(Color.BLUE);
@@ -39,6 +42,8 @@ public class MinerGamePanel extends GridBagPanel implements ActionListener {
         undo = new JButton("Undo");
         close = new JButton("Close");
         reset = new JButton("Reset");
+
+        option = new JOptionPane();
 
         move.setEnabled(false);
         undo.setEnabled(false);
@@ -63,23 +68,19 @@ public class MinerGamePanel extends GridBagPanel implements ActionListener {
     }
 
     /**
-     * Override the action Performed method,
-     * To set the Listeners for the four buttons,
-     * Move, Reset, Undo and Close
-     * @param e 
+     * Override the action Performed method, To set the Listeners for the four
+     * buttons, Move, Reset, Undo and Close
+     *
+     * @param e
      */
     @Override
-    public void actionPerformed(ActionEvent e) 
-    {   //move button
-        if (e.getSource() == move)
-        {
+    public void actionPerformed(ActionEvent e) {   //move button
+        if (e.getSource() == move) {
             minerGUI.saveState();
             minerGUI.update_locations();
             move.setEnabled(false);
-        }   
-        //reset button
-        else if (e.getSource() == reset)
-        {
+        } //reset button
+        else if (e.getSource() == reset) {
             move.setEnabled(false);
             Miner.orignalTime = 15;
             Miner.LaternInSafeZone = false;
@@ -88,26 +89,25 @@ public class MinerGamePanel extends GridBagPanel implements ActionListener {
             MinerGUI.undoList.clear();
             MinerGUI.timeList.clear();
             MinerGUI.number_ready_to_go = 0;
-        }   
-        //undo button
-        else if (e.getSource() == undo) 
-        {
+        } //undo button
+        else if (e.getSource() == undo) {
             if (MinerGUI.timeList.size() > 0) {
                 Miner.orignalTime = MinerGUI.timeList.get(MinerGUI.timeList.size() - 1);
                 time.setText(Miner.orignalTime + " minute(s) left");
                 MinerGUI.timeList.remove(MinerGUI.timeList.size() - 1);
                 minerGUI.setPreState();
             }
-        }   
-        //close button
-        else if(e.getSource() == close)
-        {
-            Main.Main.staticGameManager.setGame(1);
-            Miner.LaternInSafeZone = false;
-            Miner.orignalTime = 15;
-            MinerGUI.undoList.clear();
-            MinerGUI.timeList.clear();
-            MinerGUI.number_ready_to_go = 0;
+        } //close button
+        else if (e.getSource() == close) {
+            int x = option.showConfirmDialog(null, "Would you like to quit?", "Exit", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                Main.Main.staticGameManager.setGame(1);
+                Miner.LaternInSafeZone = false;
+                Miner.orignalTime = 15;
+                MinerGUI.undoList.clear();
+                MinerGUI.timeList.clear();
+                MinerGUI.number_ready_to_go = 0;
+            }
         }
     }
 
