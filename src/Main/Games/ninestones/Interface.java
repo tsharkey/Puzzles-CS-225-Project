@@ -213,6 +213,7 @@ public class Interface extends GamePanel {
 		// money instructions
 		Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
 		fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		
 		Font boldUnderline = new Font("Serif", Font.BOLD, 14)
 				.deriveFont(fontAttributes);
 
@@ -222,10 +223,10 @@ public class Interface extends GamePanel {
 		this.tfMoneyTotal.setWrapStyleWord(true);
 		this.tfMoneyTotal.setEditable(false);
 		this.tfMoneyTotal.setBackground(Color.GRAY);
-		this.tfMoneyTotal.setText("MONEY LEFT: "
+		this.tfMoneyTotal.setText("\nMONEY LEFT: "
 				+ DecimalFormat.getCurrencyInstance().format(game.getMoney()));
 		this.tfMoneyTotal.setFont(boldUnderline);
-		this.tfMoneyTotal.setForeground(Color.GREEN);
+		this.tfMoneyTotal.setForeground(new Color(0x18eb50)); // green
 
 		// button panel set up
 		this.buttonPanel = new JPanel();
@@ -258,7 +259,7 @@ public class Interface extends GamePanel {
 				} else {
 					// Handling weighing
 					getGameInstance().deductMoney();
-					tfMoneyTotal.setText("MONEY LEFT: "
+					tfMoneyTotal.setText("\nMONEY LEFT: "
 							+ DecimalFormat.getCurrencyInstance().format(
 									game.getMoney()));
 
@@ -285,7 +286,7 @@ public class Interface extends GamePanel {
 							.setText("Select exactly one stone for purchase!");
 				} else if (z == 1) {
 					getGameInstance().deductMoney();
-					tfMoneyTotal.setText("MONEY LEFT: "
+					tfMoneyTotal.setText("\nMONEY LEFT: "
 							+ DecimalFormat.getCurrencyInstance().format(
 									game.getMoney()));
 					for (int i = 0; i < 9; i++) {
@@ -382,7 +383,7 @@ public class Interface extends GamePanel {
 		this.game.clearScale();
 		this.game.resetMoney();
 		this.scale.resetScale();
-		tfMoneyTotal.setText("MONEY LEFT: "
+		tfMoneyTotal.setText("\nMONEY LEFT: "
 				+ DecimalFormat.getCurrencyInstance().format(game.getMoney()));
 		tpWeightInfo.setText(this.scale.getInfo());
 	}
