@@ -124,7 +124,7 @@ public class GameManager extends JFrame implements KeyListener{
             currentPanel = new Interface();
             currentGame = NINE_STONES;
         }
-        //TODO: ADD NEW GAMES HERE!
+        //TODO: ADD NEW GAMES HERE BY FOLLOWING CURRENT STRUCTURE!
 
         this.add(currentPanel);
 
