@@ -315,7 +315,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                             timeList.clear();
                         } //when the player decides to quit the game
                         else {
-                            Main.Main.staticGameManager.setGame(1);
+                            Main.staticGameManager.setGame(1);
                             Miner.LaternInSafeZone = false;
                             Miner.orignalTime = 15;
                             MinerGUI.undoList.clear();
@@ -336,7 +336,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                             timeList.clear();
                         } //when the player decides to quit the game
                         else {
-                            Main.Main.staticGameManager.setGame(1);
+                            Main.staticGameManager.setGame(1);
                             Miner.LaternInSafeZone = false;
                             Miner.orignalTime = 15;
                             MinerGUI.undoList.clear();
@@ -357,7 +357,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                         timeList.clear();
                     } //when the player decides to quit the game
                     else {
-                        Main.Main.staticGameManager.setGame(1);
+                        Main.staticGameManager.setGame(1);
                         Miner.LaternInSafeZone = false;
                         Miner.orignalTime = 15;
                         MinerGUI.undoList.clear();
