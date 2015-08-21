@@ -1,6 +1,8 @@
 package Main.Games;
 
 
+import Main.Main;
+import Main.Managers.ErrorManager;
 import Main.Managers.GameManager;
 
 import javax.imageio.ImageIO;
@@ -122,7 +124,7 @@ public class MainMenu extends GamePanel{
                 }
                 file.deleteOnExit();
             } catch (IOException ex) {
-                ex.printStackTrace();
+                new ErrorManager(ex.getMessage(), Main.staticGameManager);
             }
         }else {
             //this will probably work in your IDE, but not from a JAR
@@ -140,14 +142,14 @@ public class MainMenu extends GamePanel{
                         img = ImageIO.read(getClass().getResourceAsStream("/Main/Assets/images/" + temp.substring(2)));
                         images.add(img);
                     } catch (IOException e) {
-                        System.out.println("Image not found");
+                        new ErrorManager("Image Not Found", Main.staticGameManager);
                     }
                 } else if (temp.charAt(0) == 'n') {
                     gameTexts.add(temp.substring(2));
                 }
             }
         } catch (FileNotFoundException ex) {
-            System.out.print("Text file not found");
+            new ErrorManager("Text file not found", Main.staticGameManager);
         }
 
     }

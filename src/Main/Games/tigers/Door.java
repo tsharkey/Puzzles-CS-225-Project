@@ -1,5 +1,8 @@
 package Main.Games.tigers;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -83,7 +86,7 @@ public class Door extends JPanel
            loverImage = new ImageIcon(loveBuffer);
        }
        catch (Exception e) {
-           System.out.println("Image file not found");
+           new ErrorManager("Image file not found", Main.staticGameManager);
        }
 
        // door button specs
@@ -142,12 +145,6 @@ public class Door extends JPanel
           add(label2,BorderLayout.NORTH);
           //remove(d1);
           d1.setVisible(false);
-          //calls the sound method in Sound Class
-//          try {
-//             sound.playSound("love");
-//          } catch (LineUnavailableException ex) {
-//            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-//          }
           
           // update score
           if (!doorClicked) {
@@ -160,11 +157,6 @@ public class Door extends JPanel
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
-//          try {
-//            sound.playSound("tiger");
-//          } catch (LineUnavailableException ex) {
-//             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-//          }
           
           // update score
           if (!doorClicked) {
@@ -191,23 +183,14 @@ public class Door extends JPanel
           label2 = new JLabel(loverImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
-          //calls the sound method in Sound Class
-//          try {
-//             sound.playSound("love");
-//          } catch (LineUnavailableException ex) {
-//            Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-//          }
+
           revalidate();
           repaint();
         } else {
           label2 = new JLabel(tigerImage);
           add(label2,BorderLayout.NORTH);
           d1.setVisible(false);
-//          try {
-//            sound.playSound("tiger");
-//          } catch (LineUnavailableException ex) {
-//             Logger.getLogger(Door.class.getName()).log(Level.SEVERE, null, ex);
-//          }
+
         revalidate();
         repaint();
         }

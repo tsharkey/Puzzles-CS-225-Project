@@ -8,6 +8,9 @@
 
 package Main.Games.ninestones;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -45,7 +48,7 @@ public class Rock extends JPanel {
 			img = ImageIO.read(getClass().getResourceAsStream(
 					"Resources/rock.png"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			new ErrorManager(e.getMessage(), Main.staticGameManager);
 		}
 	}
 

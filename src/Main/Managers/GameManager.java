@@ -8,6 +8,8 @@ import Main.Games.MainMenu;
 import Main.Games.MinerPuzzle.MinerMainPanel;
 import Main.Games.ninestones.Interface;
 import Main.Games.tigers.Display;
+import Main.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -115,7 +117,7 @@ public class GameManager extends JFrame implements KeyListener{
             try{
                 currentPanel = new Display();
             }catch(Exception ex){
-                ex.printStackTrace();
+                new ErrorManager(ex.getMessage(), Main.staticGameManager);
             }
             currentGame = TIGERS;
         }
@@ -129,7 +131,6 @@ public class GameManager extends JFrame implements KeyListener{
         this.add(currentPanel);
 
         //form fits everything to the screen
-        this.pack();
         this.revalidate();
         this.repaint();
     }

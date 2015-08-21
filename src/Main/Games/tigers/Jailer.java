@@ -1,5 +1,8 @@
 package Main.Games.tigers;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -29,7 +32,7 @@ public class Jailer extends JPanel{
          img1 = ImageIO.read(getClass().getResourceAsStream("images/master_2.gif"));
        }
        catch (Exception e) {
-         System.out.println("Jailer image file not found");
+           new ErrorManager("Image file not found", Main.staticGameManager);
        }
       label1 = new JLabel(new ImageIcon(img1));
         

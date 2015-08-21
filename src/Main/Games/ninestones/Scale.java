@@ -8,6 +8,9 @@
 
 package Main.Games.ninestones;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -47,7 +50,7 @@ public class Scale extends JPanel {
 			this.images[2] = ImageIO.read(getClass().getResourceAsStream(
 					"Resources/scale.png"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			new ErrorManager(e.getMessage(), Main.staticGameManager);
 		}
 
 		this.resetScale(); // setting to default

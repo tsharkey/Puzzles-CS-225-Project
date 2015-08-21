@@ -1,5 +1,8 @@
 package Main.Games.tigers;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
@@ -25,11 +28,7 @@ public class Sound {
    public void playSound(String soundFile) throws LineUnavailableException {
      
      String path = "sounds/" + soundFile + ".wav";
-    
-     /*getClass().getResource("images/prison.png")
-       AudioInputStream audio = AudioSystem.getAudioInputStream(new File(
-                "./src/Main/Games/tigers/sounds/"+soundFile+".wav"));*/
-       
+
     try {
         AudioInputStream audio = AudioSystem.getAudioInputStream(new File(getClass().getResource(path).toURI()));
         Clip clip = AudioSystem.getClip();
@@ -38,12 +37,13 @@ public class Sound {
     }
 
     catch (UnsupportedAudioFileException uae) {
-        System.out.println(uae);
+        new ErrorManager(uae.getMessage(), Main.staticGameManager);
     } catch (IOException ioe) {
-        System.out.println(ioe);
+        new ErrorManager(ioe.getMessage(), Main.staticGameManager);
     } catch (LineUnavailableException lua) {
-        System.out.println(lua);
+        new ErrorManager(lua.getMessage(), Main.staticGameManager);
     } catch (URISyntaxException ese) {
+        new ErrorManager(ese.getMessage(), Main.staticGameManager);
     }
 
 }

@@ -1,5 +1,8 @@
 package Main.Games.tigers;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.BorderLayout;
@@ -48,7 +51,7 @@ public class Trial extends JPanel
           img2Buffer = ImageIO.read(getClass().getResourceAsStream("/Main/Games/tigers/images/prison.png"));
 
       }catch(Exception e){
-          e.printStackTrace();
+          new ErrorManager(e.getMessage(), Main.staticGameManager);
       }
 
     doorOne = d1;

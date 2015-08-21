@@ -1,5 +1,8 @@
 package Main.Games.MinerPuzzle;
 
+import Main.Main;
+import Main.Managers.ErrorManager;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -123,7 +126,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                             try {
                                 Thread.sleep(2000);
                             } catch (InterruptedException ex) {
-                                Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                new ErrorManager(ex.getMessage(), Main.staticGameManager);
                             }
                             MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
                             MinerGamePanel.message.setText("No message!");
@@ -160,7 +163,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                    new ErrorManager(ex.getMessage(), Main.staticGameManager);
                                 }
                                 MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
                                 MinerGamePanel.message.setText("No message!");
@@ -193,7 +196,7 @@ public class MinerGUI extends JPanel implements MouseListener {
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(MinerGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                    new ErrorManager(ex.getMessage(), Main.staticGameManager);
                                 }
                                 MinerGamePanel.message.setForeground(Color.LIGHT_GRAY);
                                 MinerGamePanel.message.setText("No message!");
