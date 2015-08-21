@@ -4,7 +4,7 @@
 Current Games
 
 | Game | By | About |
-|--------|--------|
+|--------|--------|--------|
 | Framework | Catherinen Huang, Tom Sharkey | The design and organization of the project flow |
 | Miners Game| Viet Dinh, Sean Johnston, Parth Patel | A game where you need to get everyone out of the collapsing mine in time |
 | NineStones | John Cyzeski, Brendan Casey, Brendan Shaughnessy | You are troubled with a puzzle from a shop owner where you are trying to fine a gem amongst ninestones |
